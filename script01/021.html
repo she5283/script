@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 2. 급여와 보너스를 입력받아 세금을 출력하시오
+        //    세금은 실수령액(급여+보너스)의 3.3%로 한다
+        //    (프로그래밍 언어에서 3.3%는 0.033이다)
+        let salary = prompt("급여를 입력하세요");
+        let aBonus = prompt("보너스를 입력하세요.");
+        let n1 = parseInt(salary);
+        let n2 = parseInt(aBonus);
+        let go = (n1+n2)*0.033;
+        console.log("세금 : "+go);
+    </script>
+</body>
+</html>

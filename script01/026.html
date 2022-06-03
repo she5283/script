@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div><span id="a">83.25</span></div>
+    <div><span id="t1"></span></div>
+    <div><span id="d">35</span></div>
+    <div><span id="t2"></span></div>
+
+    <script>
+        // let 제곱미터입력 = document.querySelector("#a").innerHTML;
+        // let 미터 = parseInt(제곱미터입력);
+        // let 섭씨입력 = document.querySelector("#d").innerHTML;
+        // let 섭씨 = parseInt(섭씨입력);
+
+        // let 평 = 미터/3.3;
+        // let 화씨 = (섭씨*9/5)+32;
+
+        // document.querySelector("#t1").innerHTML = 평;
+        // document.querySelector("#t2").innerHTML = 화씨;
+
+        let b = document.querySelector("#a").innerHTML;
+        let a = parseInt(b);
+        let pyeong = Math.floor(a*0.3025);
+        document.querySelector("#t1").innerHTML = pyeong + "평";
+        
+        let e = document.querySelector("#d").innerHTML;
+        let d = parseInt(e);
+        let Fahrenheit = (d*9/5)+32;
+        document.querySelector("#t2").innerHTML = Fahrenheit + "도" ;
+        // 83.25는 제곱미터다. 11번째줄에 몇평인지 출력
+        // 35는 섭씨온도다. 13번째줄에 화씨온도를 출력
+    </script>
+</body>
+</html>

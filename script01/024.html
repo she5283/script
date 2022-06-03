@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        window.document. document 객체
+        객체에는 기능과 값이 들었다 -> 함수, 속성
+    -->
+    <div id="target"></div>
+    <div id="target2">Hello World</div>
+    <script>
+        const target = document.querySelector("#target");
+        target.innerHTML ="우리나라 좋은나라";
+
+        // target2의 내용을 읽어와 출력하시오
+        console.log(document.querySelector("#target2").innerHTML);
+        let target2 = document.querySelector("#target2");
+        console.log(target2.innerHTML);
+
+        // document.querySelector는 1개 지정
+        // document.querySelectorAII는 모두 지정(class,tag지정시 지정한 것들만)
+    </script>
+</body>
+</html>

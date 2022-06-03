@@ -8,11 +8,15 @@
 </head>
 <body>
     <script>
-        // 너비와 높이를 입력받아 면적을 출력하시오.
-        let width = prompt("너비를 입력하세요");
-        let hight = prompt("높이를 입력하세요");
-        let area =width*hight;
-        console.log("면적 : "+area);
+        // prompt만 사용하면 글자(string)로 입력되기때문에 숫자로 바꿔서 입력해줘야함.
+        let va1ue1 = prompt("첫번째 값 입력");
+        let va1ue2 = prompt("두번째 값 입력");
+        let num1 = parseInt(va1ue1);
+        let num2 = parseInt(va1ue2);
+        let result = num1 + num2;
+        console.log(result);
+
+        // 키보드로 입력하면 무조건 글자다.
     </script>
 </body>
 </html>
