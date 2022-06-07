@@ -1,0 +1,24 @@
+<!DOCTYPE html>+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        제곱미터를 입력받아 평으로 바꿔 출력하시오
+        입력하지 않은 경우 "입력 오류"라고 출력하시오
+    -->
+    <script>
+        const m = prompt("제곱미터를 입력하시오");
+        if(m===null){
+            alert("입력 오류")
+        } else {
+            const 평 = m / 3.3;
+            alert("평 : " + 평);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>null</title>
+</head>
+<body>
+    <div id="target"></div>
+    <script>
+        const target = document.querySelector('#target');
+        target.style.color='red';
+        target.innerHTML='우리나라 좋은나라';
+        console.log(target.id);
+        console.log(typeof target);         // object
+
+        let a;
+
+        const target1 = document.querySelector('#target1');
+        console.log(target1);               // null
+        console.log(typeof target1);        // 가리키는 대상이 없는 object
+        console.log(target1.id);    // null은 객체를 만든부분에 문제가 있다.
+
+        /*
+            변수는 값 1개 저장
+            객체는 object 리모콘(여러개)
+        */
+    </script>
+</body>
+</html>

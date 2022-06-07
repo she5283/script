@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window 객체의 입출력 메소드</title>
+</head>
+<body>
+    <p>alert, prompt, confirm</p>
+    <script>
+        const result = confirm('탈퇴하시겠습니까');
+        console.log(result);
+
+        // result2의 값은??? mull, undefined, ''
+        const result2 = prompt('나이를 입력하세요');
+        console.log(result2);
+        console.log(typeof result2);
+
+        console.log(result2===null);
+        if(result2===null)
+            alert("나이를 잘못 입력했어요");
+    </script>
+</body>
+</html>
