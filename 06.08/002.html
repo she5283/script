@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #hello {
+            color:red;
+        }
+    </style>
+    <script>
+        const div = document.querySelector('#hello');
+        console.log(div);
+    </script>
+</head>
+<body>
+    <!-- 
+        css와 js는 처리하는 방법이 다르다
+        js는 한줄씩 처리한다
+    -->
+    <div id="hello"></div>
+    <script>
+        const div2 = document.querySelector('#hello');
+        console.log(div2);
+    </script>
+</body>
+</html>

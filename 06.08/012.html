@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="value">
+    <button onclick="print()">제곱하기</button>
+    <div>제곱값 : <span id="target"></span></div>
+    <script>
+        // 숫자를 입력하고 버튼을 클릭하면 제곱해서 출력하기
+        function print() {
+            const input = document.querySelector('#value').value;
+            console.log(input);
+            const 제곱 = input * input;
+            console.log(제곱);
+            
+            document.querySelector("#target").innerHTML = 제곱;
+            // const target = document.querySelector('#target')
+            // target.innerHTML = 제곱;
+            // 화면에 값 출력
+        }
+    </script>
+</body>
+</html>

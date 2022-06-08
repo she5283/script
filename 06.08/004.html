@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const str1 = 'hello \n world';
+        console.log(str1);
+        const str2 = 'hello\tworld';
+        console.log(str2);
+
+        const irum = '홍길동';
+        console.log('이름 : '+irum);
+        console.log("이름 : "+irum);
+        console.log(`이름 : ${irum}`);
+
+        const nai = 20;
+        console.log('이름은 '+irum +"이고 나이는 "+nai + '입니다');
+
+        // template 문자열
+        console.log(`이름은 ${irum}이고 나이는 ${nai}입니다`);
+        
+        const saram = {
+            irum: '전우치',
+            age:400
+        }
+        console.log(`이름은 ${saram.irum}이고 나이는 ${saram.age}입니다.`);
+        // 이름은 전우치이고 나이는 400살입니다.
+    </script>
+</body>
+</html>

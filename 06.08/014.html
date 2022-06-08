@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    첫번째 값 : <input type="text" id="value1"><br>
+    두번째 값 : <input type="text" id="value2">
+    <button onclick="덧셈();">더하기</button>
+    <div>덧셈 결과 : <sapn id="result"></sapn></div>
+    <script>
+        function 덧셈() {
+            const input1 = document.querySelector('#value1').value;
+            const input2 = document.querySelector('#value2').value;
+            const num1 = parseInt(input1);
+            const num2 = parseInt(input2);
+            const 결과 = num1 + num2;
+            document.querySelector('#result').innerHTML = 결과;
+        }
+    </script>
+</body>
+</html>

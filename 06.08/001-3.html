@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>null</title>
+</head>
+<body>
+    <div id="hello"></div>
+    <script>
+        const div = document.querySelector('#hi');
+
+        // 변수는 값을 1개만 저장한다
+        // 그러면 color가 저장하고 있는 값은 뭐야???? 객체번호
+        // color는 값이 아닌 객체번호를 가진다
+        // color는 객체 그 자체가 아니라 객체의 리모컨 역할
+        // color는 객체를 가리킨다 (참조타입)
+        const color = { red:255, green:0, blue:0};
+        console.log(color.red);
+
+        // null : 가리키는 대상이 없다
+        console.log(div);
+        console.log(typeof div);
+        console.log(div.id);
+    </script>
+</body>
+</html>
