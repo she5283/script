@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const ar = [];
+        let index = 0;
+        function choice1() {
+            const b = document.querySelector('#siksa').value;
+            ar[index] = b;
+            index++;
+            console.log(ar);
+        };
+        function choice2() {
+            const c = document.querySelector('#yori').value;
+            ar[index] = c;
+            index++
+            console.log(ar);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 
+        짜장, 짬뽕, 볶음밥 -> select
+        탕수육, 깐풍기, 라조기 -> checkbox
+
+        select나 checkbox에서 선택하면 배열에 추가해서 출력하시오
+        [짜장, 짬뽕, 탕수육]
+    -->
+    <select id="siksa">
+        <option>짜장</option>
+        <option>짬뽕</option>
+        <option>볶음밥</option>
+    </select>
+    <button onclick="choice1();">추가</button>
+    <select id="yori">
+        <option>탕수육</option>
+        <option>깐풍기</option>
+        <option>라조기</option>
+    </select>
+    <button onclick="choice2();">추가</button>
+</body>
+
+</html>

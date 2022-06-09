@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 과일을 선택하면 선택한 과일을 console.log로 찍어보시오
+        const ar = [];
+        let index = 0;
+        function print() {
+            const fruit = document.querySelector('#fruit').value;
+            ar[index] = fruit;
+            console.log(index);
+            index++;
+            console.log(ar);
+            // const ar = [75, 80, 155];    배열
+            // const obj = {}
+        }
+    </script>
+</head>
+<body>
+    <select id="fruit">
+        <option>사과</option>
+        <option>바나나</option>
+        <option>수박</option>
+    </select>
+    <button onclick="print();">추가</button>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="loading();">
+    <!-- 
+        1. 화면이 로딩되면
+        https://www.w3schools.com/js/pic_bulboff.gif 이미지를 출력
+        2. 버튼을 클릭하면
+        https://www.w3schools.com/js/pic_bulbon.gif 이미지를 출력
+    -->
+    <h1>자바 스크립트 전구</h1>
+    <button onclick="on();">불을 켭니다</button>
+    <img id="image">
+    <button onclick="off();">불을 끕니다</button>
+    <script>
+        function loading() {
+            document.querySelector('#image').src = "https://www.w3schools.com/js/pic_bulboff.gif"
+            //const image = document.querySelector('#image');
+            //image.src = "https://www.w3schools.com/js/pic_bulboff.gif"
+        }
+        function on() {
+            document.querySelector('#image').src = "https://www.w3schools.com/js/pic_bulbon.gif"
+            //const image = document.querySelector('#image');
+            //image.src = "https://www.w3schools.com/js/pic_bulbon.gif"
+        }
+        function off() {
+            document.querySelector('#image').src = "https://www.w3schools.com/js/pic_bulboff.gif"
+            //const image = document.querySelector('#image');
+            //image.src = "https://www.w3schools.com/js/pic_bulboff.gif"
+        }
+    </script>
+</body>
+</html>

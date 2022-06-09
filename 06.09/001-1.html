@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="init();">
+    <!-- DOM을 초기화한다 load -->
+    <!-- 카운터 -->
+    <div id="num"></div>
+    <button onclick="증가();">증가</button>
+    <script>
+        let count =0;
+        function init() {
+            document.querySelector('#num').innerHTML = count;
+            // document.querySelector('#num').innerHTML = 0;
+        }
+        function 증가() {
+            // let count = document.querySelector('#num').innerHTML;
+            count++;
+            document.querySelector('#num').innerHTML = count;
+        }
+    </script>
+</body>
+</html>

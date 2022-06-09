@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="init();">
+    <div></div>
+    <button onclick="clickHandler();">증가</button>
+    <script>
+        const a = 10;
+        x = 0;
+        // 전역(global)
+        function init() {
+            const b = 20;
+            y = 20;
+            console.log(a);
+            console.log(b);
+            console.log(x);
+            console.log(y);
+            //local
+        }
+        // scope (변수에 접근할 수 있는 범위)
+        function clickHandler() {
+            console.log(a);
+            // console.log(b); 오류때문에 잠시 주석
+            console.log(x);
+            console.log(y);
+            //local
+        }
+    </script>
+</body>
+</html>

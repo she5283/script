@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        짜장, 짬뽕, 볶음밥 -> select
+        탕수육, 깐풍기, 라조기 -> checkbox
+
+        select나 checkbox에서 선택하면 배열에 추가해서 출력하시오
+        [짜장, 짬뽕, 탕수육]
+    -->
+    <select id="siksa" onchange="메뉴추가();">
+        <option disabled selected>메뉴를 선택하세요</option>
+        <option>짜장</option>
+        <option>짬뽕</option>
+        <option>볶음밥</option>
+    </select>
+    <select id="yori" onchange="요리추가()">
+        <option disabled selected>요리를 선택하세요</option>
+        <option>탕수육</option>
+        <option>깐풍기</option>
+        <option>라조기</option>
+    </select>
+    <div id="result"></div>
+    <script>
+        const menu =[];
+        let index =0;
+        function 메뉴추가() {
+            const food = document.querySelector('#siksa').value;
+            menu[index] =food;
+            index++;
+            document.querySelector('#result').innerHTML = menu;
+            console.log(menu);
+        }
+        function 요리추가() {
+            const food = document.querySelector('#yori').value;
+            menu[index] =food;
+            index++;
+            document.querySelector('#result').innerHTML = menu;
+        }
+    </script>
+</body>
+
+</html>
