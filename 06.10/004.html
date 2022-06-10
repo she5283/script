@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        점수를 입력받아 배열에 추가해 출력하시오
+        1. 입력 -> how?
+        2. 배열, index
+    -->
+    <input type="text" id="jumsu" name="jumsu">
+    <button onclick="추가()">점수 입력</button>
+    <div>점수 : <span id="print"></span></div>
+    <script>
+        const ar = [];
+        let index = 0;
+        function 추가() {
+            // 함수안에서 변수를 만들면 함수가 실행될 때마다
+            // 새로만들어진다
+            const input = document.querySelector('#jumsu');
+            ar[index] = parseInt(input.value);
+            input.value="";
+            input.focus();
+            index++;
+            console.log(ar);
+            document.querySelector('#print').innerHTML = ar;
+        }
+    </script>
+</body>
+</html>

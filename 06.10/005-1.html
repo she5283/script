@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // ++, -- 연산자
+    let a = b = 10;     // 대입은 오른쪽에서 왼쪽. 10 => b => a
+    // 증감연산자가 무조건 증감한다
+    ++a;    // 전위(prefix)
+    b++;    // 후위(postfix)
+    a+b;    // 중위(infix)
+
+    // 증감연산자는 다른 연산자와 함께 사용할 수 있다
+    // 그 경우 전위는 증감을 먼저, 후위는 증감을 나중에 한다
+    let c = ++a;
+    let d = b++;
+    console.log(a, b, c, d);
+    // 12, 12, 12, 11
+
+    console.log(++a);
+    console.log(b++);
+    console.log(a===b);
+    </script>
+</body>
+</html>

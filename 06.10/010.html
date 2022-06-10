@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--  
+        국어, 영어 성적을 입력받아 평균이 90이상이면 우수,
+        70이상이면 통과, 미만이면 재시험
+    -->
+    <div>
+        <div>
+            <label for="kor">국어</label>
+            <input type="text" id="kor" placeholder="국어 성적">
+        </div>
+        <div>
+            <label for="eng">영어</label>
+            <input type="text" id="eng" placeholder="영어 성적">
+        </div>
+        <button onclick="result1();">결과 보기</button>
+        <input type="text" id="result" disabled>
+    </div>
+    <script>
+        function result1() {
+            const kor1 = document.querySelector('#kor');
+            const eng1 = document.querySelector('#eng');
+            const result = document.querySelector('#result');
+
+            const kor = parseInt(kor1.value);
+            const eng = parseInt(eng1.value);
+
+            const average = (kor + eng) / 2;
+
+            let report;
+            if (average >= 90) {
+                report = `우수 (평균:${average}점)`;
+            } else if (average >= 70) {
+                report = `통과 (평균:${average}점)`;
+            } else {
+                report = `재시험 (평균:${average}점)`;
+            }
+            console.log(average);
+            result.value = report;
+        }
+    </script>
+</body>
+
+</html>

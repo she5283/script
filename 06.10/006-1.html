@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>2항 연산자</h1>
+    <p>산술연산자 : + - * / % </p>
+    <!-- html entity : 특수문자 -->
+    <p>조건연산자 : > >= &lt; &lt;= == === != !==</p>
+    <p>논리연산자 : && ||</p>
+</body>
+<script>
+    const a = '5';
+    const b = 5;
+    // ==, !=는 타입을 고려하지 않고 비교
+    console.log(a==b);  // true
+    // ===, !==는 타입을 고려 -> 멋대로 타입 바꾸지마 a:글자 b:숫자
+    console.log(a===b); // false
+
+    const p=null, q=null;;
+    const x=undefined, y=undefined;
+    // undefined, null은 조건연산자로 비교할 수 있다.(비교가능함)
+    console.log(p==q);  // true
+    console.log(p===q); // true
+    console.log(x==y);  // true
+    console.log(x===y); // true
+
+    // 객체는 비교불가능하다.
+    const obj1 = {irum:'홍길동'};
+    const obj2 = {irum:'홍길동'};
+    console.log(obj1==obj2);    // false
+    console.log(obj1===obj2);   // false
+
+    // NaN는 isNaN()으로 비교한다.
+    const m = 'hello'*5;
+    console.log(isNaN(m));  // true
+    console.log(isNaN(15)); // false
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--  
+        + - * / 
+    -->
+    <input type="text" id="i1">
+    <select id="s1">
+        <option disabled selected>사칙연산 선택</option>
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+    </select>
+    <input type="text" id="i2">
+    =
+    <input type="text" id="i3" disabled>
+    <button onclick="b1();">계산하기</button>
+    <script>
+        function b1() {
+            const val1 = document.querySelector('#i1');
+            const val2 = document.querySelector('#i2');
+            const oper = document.querySelector('#s1');
+            const result = document.querySelector('#i3');
+
+            const value1 = parseInt(val1.value);
+            const value2 = parseInt(val2.value);
+
+            let result1
+
+            if (oper.value === "+") {
+                result1 = value1 + value2;
+            } else if (oper.value === "-") {
+                result1 = value1 - value2;
+            } else if (oper.value === "*") {
+                result1 = value1 * value2;
+            } else if (oper.value === "/") {
+                result1 = value1 / value2;
+            } else {
+                result1 = "선택해주세요";
+            }
+            result.value = result1;
+        }
+    </script>
+</body>
+
+</html>

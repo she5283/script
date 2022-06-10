@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        키-105가 적정체중이라고 하자
+        적정체중을 출력하시오
+        (prompt, alert, console.log 사용금지)
+    -->
+    <input type="text" id="height" placeholder="키를 입력하시오">
+    <input type="text" id="weight" placeholder="몸무게를 입력하시오">
+    <button onclick="입력()">출력</button>
+    <div>비만도 : <span id="출력"></span></div>
+    <script>
+        function 입력() {
+            const height = parseInt(document.querySelector('#height').value);
+            const weight = parseInt(document.querySelector('#weight').value);
+            const bmi =(weight/(height*height)*10000).toFixed(2);
+            document.querySelector('#출력').innerHTML = bmi;
+            if (bmi>=25) {
+                alert('비만');
+            } else if (bmi>=23){
+                alert('과체중');
+            } else if (bmi>=18.5){
+                alert('정상');
+            } else {
+                alert('저체중');
+            }
+        }
+    </script>
+</body>
+</html>

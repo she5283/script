@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        덧셈/뺄셈/곱셈/나눗셈 계산기
+    -->
+    <input type="text" id="val1">
+    <select id="oper">
+        <option disabled selected>사친연산 선택</option>
+        <option>+</option>
+        <option>-</option>
+        <option>/</option>
+        <option>*</option>
+    </select>
+    <input type="text" id="val2">
+    =
+    <input type="text" id="result" disabled>
+    <button onclick="calc();">계산하기</button>
+    <script>
+        function calc() {
+            const val1 = document.querySelector('#val1');
+            const val2 = document.querySelector('#val2');
+            const result = document.querySelector('#result');
+            const oper = document.querySelector('#oper');
+
+            const value1 = parseInt(val1.value);
+            const value2 = parseInt(val2.value);
+
+            let calcResult;
+
+            if (oper.value === "+") {
+                calcResult = value1 + value2;
+            } else if (oper.value === "-") {
+                calcResult = value1 - value2;
+            } else if (oper.value === "*") {
+                calcResult = value1 * value2;
+            } else if (oper.value === "/") {
+                calcResult = value1 / value2;
+            } else {
+                calcResult = '선택해주세요.';
+            }
+
+            result.value = calcResult;
+        }
+    </script>
+</body>
+
+</html>

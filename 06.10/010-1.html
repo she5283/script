@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- html5 form 요소 -->
+    <div>
+        <div>
+            <label for="kor">국어</label>
+            <input type="number" id="kor" min="0" max="100">
+        </div>
+        <div>
+            <label for="eng">영어</label>
+            <input type="number" id="eng" min="0" max="100">
+        </div>
+        <button onclick="판정();">판정</button>
+    </div>
+    <script>
+        function 판정() {
+            const korElem = document.querySelector('#kor');
+            const engElem = document.querySelector('#eng');
+            const kor = parseInt(korElem.value);
+            const eng = parseInt(engElem.value);
+            const avg = (kor+eng)/2;
+            if (kor>100 || eng>100){
+                alert('나가');
+                // 100점 이상의 점수를 입력할시 함수종료 return
+                return;
+            }
+            if (avg>=90){
+                alert('우수');
+            } else if (avg>=70) {
+                alert('통과');
+            } else {
+                alert('재시험');
+            }
+        }
+    </script>
+</body>
+
+</html>
