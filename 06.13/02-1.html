@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = 10, b = 10;
+        // 증감연산자는 위치에 상관없이 변수를 증감시킴
+        // 단, 다른 연산과 함께 사용하면 전위는 증감부터, 후위는 다른 연산부터
+        
+        let c = a++;
+        let d = ++b;
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(d);
+        // a: 11, b: 11, c: 10, d: 11
+
+        console.log(a++); // 11을 출력하고 a는 증가 = 12
+        console.log(++b); // 증가한 다음 출력 12
+    </script>
+</body>
+</html>

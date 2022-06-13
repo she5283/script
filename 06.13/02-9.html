@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            bmi.onclick = function () {
+                const 키 = parseInt(document.querySelector('#키').value);
+                const 체중 = parseInt(document.querySelector('#체중').value);
+
+                const c1 = 키 / 100;
+                const 결과 = 체중 / (c1 * c1);
+                console.log(결과);
+
+                const v1 = 결과 >= 25 ? '과체중입니다' : '과체중이 아닙니다';
+                const result = document.querySelector('#result').innerHTML = v1;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>BMI 계산기</h1>
+    <!--  
+        체중과 키를 입력받아 bmi와 비만여부를 출력하시오
+        과체중 여부는 bmi가 25이상이면 '과체중입니다.',
+        미만이면 '과체중이 아닙니다.'
+    -->
+    <label for="키">키 : </label>
+    <input type="text" id="키" placeholder="키를 입력하세요.">
+    <br>
+    <label for="체중">체중 : </label>
+    <input type="text" id="체중" placeholder="체중을 입력하세요.">
+    <button id="bmi">결과확인</button>
+    <hr>
+    <div>결과 : <span id="result"></span></div>
+</body>
+
+</html>

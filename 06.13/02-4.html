@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="value">
+     
+    <button onclick="v1();">3의 배수 판정</button>
+    <button onclick="v2();">5의 배수 판정</button>
+    
+    <button id="three">3의 배수 판정</button>
+    <button id="five">5의 배수 판정</button>
+    <script>
+        // 숫자를 입력한 후 버튼을 각각 배수여부를 판정해 출력하시오
+        const three = document.querySelector('#three');
+        three.onclick = function() {
+            const input = document.querySelector('#value').value;
+            const value = parseInt(input);
+            const result = value%3==0? '3의 배수' : '3의 배수 아님';
+            alert(result);
+        };
+        document.querySelector('#five').onclick = function() {
+            const input = document.querySelector('#value').value;
+            const value = parseInt(input);
+            const result = value%5==0? '5의 배수' : '5의 배수 아님';
+            alert(result);
+        };
+
+        function v1() {
+            const input = parseInt(document.querySelector('#value').value);
+            alert(input%3===0? '3의 배수입니다' : '3의 배수가 아닙니다');
+        };
+        function v2() {
+            const input = parseInt(document.querySelector('#value').value);
+            alert(input%5===0? '5의 배수입니다' : '5의 배수가 아닙니다');
+        };
+    </script>
+</body>
+</html>

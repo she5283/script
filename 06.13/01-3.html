@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="target">우리나라</p>
+    <!--  
+        마우스가 들어오면 배경색 노랑, 글자색 빨강
+        마우스가 떠나면 원래대로
+    -->
+    <script>
+        const tearget = document.querySelector('#target');
+        tearget.onmouseenter = function () {
+            tearget.style.backgroundColor = 'yellow';
+            tearget.style.color = 'red' ;
+        }
+        tearget.onmouseout = function () {
+            tearget.style.backgroundColor = 'white';
+            tearget.style.color = 'black';
+        }
+    </script>
+</body>
+</html>

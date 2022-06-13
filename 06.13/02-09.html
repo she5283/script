@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            const 키입력 = document.querySelector('#height');
+            const 체중입력 = document.querySelector('#weight');
+            const panjung = document.querySelector('#panjung');
+            const result = document.querySelector('#result');
+            panjung.onclick = function () {
+                const 키 = parseInt(키입력.value) / 100;
+                const 체중 = parseFloat(체중입력.value);
+                const bmi = Math.floor(체중 / (키 * 키));
+                const 과체중 = bmi >= 25 ? "과체중" : "과체중아님";
+                result.innerHTML = `bmi는 ${bmi}이고 ${과체중}이다.`;
+            };
+        };
+    </script>
+</head>
+
+<body>
+키:<input type="text" id="height"><br>
+체중:<input type="text" id="weight"><br>
+<button id="panjung">비만도 계산</button>
+<hr>
+계산:<span id="result"></span>
+</body>
+
+</html>

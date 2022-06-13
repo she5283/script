@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="target" onmouseenter="aaaa();">우리나라</p>
+    <script>
+        const p = document.querySelector('#target');
+        p.onclick = bbbb;   // 함수는 ()를 사용하면 바로 실행된다.
+        function aaaa() {
+            console.log('aaaa');
+        }
+        function bbbb() {
+            alert('bbbb');
+        }
+    </script>
+</body>
+</html>
