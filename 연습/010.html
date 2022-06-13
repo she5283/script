@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            const value = document.querySelector('#value');
+            const calc = document.querySelector('#calc');
+            const even = document.querySelector('#even');
+            const m2 = document.querySelector('#m2');
+            calc.onclick = function () {
+                const value1 = parseInt(value.value);
+                const even1 = value1 % 2 == 0 ? '짝수입니다.' : '짝수가 아닙니다.'
+                const m22 = value1 * value1;
+                even.innerHTML = even1;
+                m2.innerHTML = m22;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <label for="value">값:</label>
+    <input type="text" id="value" placeholder="값을 입력하세요.">
+    <button id="calc">계산</button>
+    <hr>
+    <div>짝수여부 : <span id="even"></span></div>
+    <div>제곱값 : <span id="m2"></span></div>
+</body>
+
+</html>

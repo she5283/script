@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a{
+        background-color: y;
+        }
+    </style>
+</head>
+<body>
+    <p id="target">우리나라</p>
+    <!--  
+        마우스 엔터, 클릭 두 이벤트 처리
+        엔터되면 배경색을 노랑, 클릭하면 글자색을 빨강색으로
+    -->
+    <script>
+        const p = document.querySelector('#target');
+        p.onmouseenter = function() {
+            p.style.backgroundColor = 'yellow';
+        }
+        p.onclick = function() {
+            p.style.color = "red";
+        }
+    </script>
+</body>
+</html>

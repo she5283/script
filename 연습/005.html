@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="target">우리나라</p>
+    <!--  
+        마우스가 들어오면 배경색 노랑, 글자색 빨강
+        마우스가 떠나면 원래대로
+    -->
+    <script>
+        const p = document.querySelector('#target');
+        p.onmouseenter = function () {
+            p.style.backgroundColor = 'yellow';
+            p.style.color = 'red';
+        }
+        p.onmouseout = function () {
+            p.style.backgroundColor = '#fff';
+            p.style.color = '#000';
+        }
+    </script>
+</body>
+</html>

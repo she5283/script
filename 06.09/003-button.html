@@ -13,12 +13,14 @@
             const b = document.querySelector('#siksa').value;
             ar[index] = b;
             index++;
+            result.innerHTML = ar;
             console.log(ar);
         };
         function choice2() {
             const c = document.querySelector('#yori').value;
             ar[index] = c;
             index++
+            result.innerHTML = ar;
             console.log(ar);
         }
     </script>
@@ -44,6 +46,7 @@
         <option>라조기</option>
     </select>
     <button onclick="choice2();">추가</button>
+    <div id="result"></div>
 </body>
 
 </html>
