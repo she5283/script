@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        window.onload=function () {
+            const ar = [
+                { kor: 77, eng: 80 }, { kor: 75, eng: 70 }, { kor: 80, eng: 90 }
+                ];
+            const $list = $('#list');
+            const $sum = $('#sum');
+            let sum = 0;
+            for (const jumsu of ar) {
+                if (jumsu.eng>=80) {
+                    $(`<li>${jumsu.eng}</li>`).appendTo($list).css('color','red');
+                } else {
+                    $(`<li>${jumsu.eng}</li>`).appendTo($list);
+                }
+                sum+=jumsu.eng;
+            }
+            $(`<p>영어점수의 합계 : ${sum}점</p>`).appendTo($sum);
+        }
+        // 영어점수를 ul에 출력하시오. 80점이상이면 빨강색으로 하시오
+        // 영어점수의 합계를 div에 출력하시오
+        // 영어점수의 합계 : 240점
+    </script>
+</head>
+
+<body>
+<ul id="list"></ul>
+<div id="sum"></div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 객체
+        // 어떤 정보를 표현하려고 서로 관련된 데이터(속성)와 함수(method)를 모았다.
+        const student = {
+            irum : '홍길동',
+            nai: 20,
+            insa: function() {
+                // this는 자기자신 이라는 의미(영어로 치면 I)
+                // js에서 멤버끼리 접근하려면 반드시 this를 사용해야 한다
+                // 자바는 this 생략이 가능하다. js는 절대 불가능
+                console.log('안녕하세요' + this.irum + '입니다');
+            }
+        };
+        student.insa();
+    </script>
+</body>
+</html>

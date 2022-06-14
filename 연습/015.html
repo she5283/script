@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 국어와 영어의 합계를 출력하는 printTotal 메소드를 추가하시오
+        const student = {
+            kor:77,
+            eng:80,
+            printTotal:function () {
+                console.log(this.kor + this.eng);
+            }
+        }
+        student.insa=function(){
+            console.log(this.kor + this.eng);
+        }
+        student.printTotal();
+        student.insa();
+    </script>
+</body>
+</html>

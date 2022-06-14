@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const ar = [{ kor: 77, eng: 80 }, { kor: 75, eng: 70 }, { kor: 80, eng: 90 }];
+
+        // 국어 점수의 합계, 영어 점수의 합계, 전체 합계
+        let sumOfKor = 0;
+        let sumOfEng = 0;
+        let sumOfTotal = 0;
+        for (const ob of ar) {
+            sumOfKor += ob.kor;
+            sumOfEng += ob.eng;
+            //sumOfTotal = sumOfTotal + ob.eng + ob.kor;
+            sumOfTotal += ob.eng + ob.kor;
+        }
+        console.log(sumOfKor);
+        console.log(sumOfEng);
+        console.log(sumOfTotal);
+    </script>
+</body>
+
+</html>

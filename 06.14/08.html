@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const ar = [
+            { kor: 77, eng: 80 }, { kor: 75, eng: 70 }, { kor: 80, eng: 90 }
+        ];
+        let sum = 0;
+        for (const ob of ar) {
+            sum = sum + ob.eng
+            //sum += ob.eng
+        }
+        const avg = sum/ar.length
+        console.log(`합계는 ${sum}, 평균은 ${avg}`);
+        console.log(sum);
+        console.log(sum/ar.length);
+        // 영어 성적의 합계와 평균을 출력하시오
+    </script>
+</body>
+
+</html>

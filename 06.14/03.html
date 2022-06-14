@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            irum:"홍길동",
+            func1 : function () {
+                // 일반 함수
+                console.log("==============");
+                console.log(this); // object 오브젝트
+            },
+            func2 : ()=>{
+                // 화살표 함수 => 항상 웹 브라우저(window)
+                console.log("###############");
+                console.log(this); // window 웹 브라우저
+                // js의 this는 상황에따라 달라진다.
+            }
+        }
+        obj.func1();
+        obj.func2();
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const ar = [{ kor: 77, eng: 80 }, { kor: 75, eng: 70 }, { kor: 80, eng: 90 }];
+        let kors = 0;
+        let engs = 0;
+        for (const jumsu of ar) {
+            kors+=jumsu.kor;
+            engs+=jumsu.eng;
+        }
+        console.log(kors);
+        console.log(engs);
+        console.log(kors+engs);
+        // 국어 점수의 합계, 영어 점수의 합계, 전체 합계
+    </script>
+</body>
+
+</html>

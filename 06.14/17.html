@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        const ar = [
+            { kor: 77, eng: 80 }, { kor: 75, eng: 70 }, { kor: 80, eng: 90 }
+        ];
+        // 영어점수를 ul에 출력하시오. 80점이상이면 빨강색으로 하시오
+        // 영어점수의 합계를 div에 출력하시오
+        // 영어점수의 합계 : 240점
+        window.onload = function () {
+            const $list1 = $('#list1');
+            const $sum1 = $('#sum1');
+            let sum = 0;
+            let sum1 = 0;
+            for (const jumsu of ar) {
+                if (jumsu.eng>=80) {
+                    $(`<li>${jumsu.eng}</li>`).appendTo($list1).css('color','red');
+                } else {
+                    $(`<li>${jumsu.eng}</li>`).appendTo($list1);
+                }
+                sum += jumsu.eng;
+            }
+            $(`<p>영어점수의 합계 : ${sum}점</p>`).appendTo($sum1);
+            // const $list2 = $('#list2');
+            // const $sum2 = $('#sum2');
+            // for (const jumsu of ar){
+            //     if(jumsu.kor>=80){
+            //         $(`<li>국어 점수 : ${jumsu.kor}점</li>`).appendTo($list2).css('color','red');
+            //     } else {
+            //         $(`<li>국어 점수 : ${jumsu.kor}점</li>`).appendTo($list2);
+            //     }
+            //     sum1+=jumsu.kor;
+            // }
+            // $sum2.text(`국어 점수 합계 : ${sum1}점`);
+            // $(`<p>국어 점수 합계 : ${sum1}점</p>`).appendTo($sum2);
+        }
+    </script>
+</head>
+
+<body>
+    <ul id="list1"></ul>
+    <div id="sum1"></div>
+    <ul id="list2"></ul>
+    <div id="sum2"></div>
+</body>
+
+</html>

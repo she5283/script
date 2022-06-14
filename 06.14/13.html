@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            const target = $('#target');
+            // 요소를 만들떄는 $로 시작한다
+            // $(선택자) -> 요소를 선택     $('p')
+            // $(요소) -> 요소를 생성       $('<p>'), $('<p>Hello</p>')
+
+            // 부모.append(자식)        결과는 부모
+            // 자식.appendTo(부모)      결과는 자식
+            $('<p>우리나라</p>').appendTo(target).css('color','red'); // 자식에게 적용
+
+            const menu = "짜장면";
+            // menu를 p태그로 감싸 #target에 붙이시오
+            // 글자색은 노랑으로 하시오
+            $(`<p>${menu}</p>`).appendTo(target).css('color','yellow');
+        }
+    </script>
+</head>
+<body>
+    <div id="target"></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const ar = [77, 88, 66];
+        let sum = 0;
+        let cum = 0;
+
+        // 합계와 평균을 출력하시오
+        for (const ob of ar) {
+            cum = cum + ob;
+        }
+        console.log(cum);
+        console.log(cum / 3);
+        for (let i = 0; i < ar.length; i++) {
+            sum += ar[i];
+        }
+        console.log(sum);
+        console.log(sum / ar.length);
+    </script>
+</body>
+
+</html>
