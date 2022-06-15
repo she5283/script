@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        const ar = [
+            { irum: '홍길동', jumsu: 80 }, { irum: '전우치', jumsu: 75 }
+        ];
+        window.onload = function () {
+            function printAr(arr) {
+                const $list = $('#list');
+                const $sum = $('#sum');
+                let i = 0;
+                for (const ob of arr) {
+                    $(`<li>${ob.irum}의 점수는 ${ob.jumsu}점</li>`).appendTo($list);
+                    i += ob.jumsu;
+                }
+                $(`<p>점수합계 : ${i}</p>`).appendTo($sum);
+            }
+            printAr(ar);
+        }
+    </script>
+</head>
+
+<body>
+    <ul id="list">
+        <!-- 
+        홍길동의 점수는 80점 형식으로 li 추가
+        전우치의 점수는 75점
+    -->
+    </ul>
+    <div id="sum">
+        <!-- 점수합계 : 155 -->
+    </div>
+</body>
+
+</html>

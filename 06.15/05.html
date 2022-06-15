@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const jumsu = 75;
+        
+        // 점수를 입력받아 90점이상이면 우수, 70점이상이면 보통, 아니면 재시험
+        // 이라고 리턴
+        function kor(jumsu) {
+            if (jumsu>=90) {
+                return '우수';
+            } else if (jumsu>=70) {
+                return '보통';
+            } else {
+                return '재시험';
+            }
+        }
+        console.log(kor(jumsu));
+
+        // 홀짝을 판정하는 함수를 정의하시오
+        const number1 = 20
+        function 짝수(number1) {
+            return number1%2==0? true:false;
+        }
+        console.log(짝수(number1));
+    </script>
+</body>
+</html>

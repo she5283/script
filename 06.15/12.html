@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        const url = 'http://sample.bmaster.kro.kr/contacts?pageno=2&pagesize=4';
+        window.onload = function () {
+            // 현재 화면에서 서버와 통신하고 그 결과로 화면을 만든다 -> AJAX
+            // $.ajax(주소).done(function (서버가 보내준 결과) {})
+            // $.ajax(주소).done(성공했을 때 실행할 함수).fail(실패했을 때 실행할 함수)
+            // $.ajax가 성공했을 때 수행할 코드는 무조건 doen()안에 
+
+            $.ajax(url).done(function(result) {
+                // 서버가 json으로 결과를 보내면 $.ajax()는 객체로 자동변환
+                // result : pageno, pagesize, totalcount, contacts
+                console.log(result.contacts);
+                $('#target').attr('src',result.contacts[0].photo);
+            });
+        }
+    </script>
+</head>
+<body>
+    <img id="target">
+
+</body>
+</html>

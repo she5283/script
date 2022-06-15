@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const ar = [77,55,66,88];
+        const br = [55,33,22];
+        // ar을 출력하시오
+        // ar을 출력하는 코드 -> 배열을 출력하는 함수
+        for (const value of ar) {
+            console.log(value);
+        }
+        // 배열을 출력하는 함수 -> 재사용 가능
+        function ars(arr) {
+            for (const value of arr) {
+                console.log(value);
+            }
+        }
+        ars(ar);
+        ars(br);
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 함수는 독립
+        const kor = 70;
+        const eng = 75;
+        function add(kor, eng) {
+            // 함수는 복사본으로 작업한다
+            return kor + eng;
+        }
+        // 객체
+        const score = {
+            kor: 70,
+            eng: 75,
+            add: function () { // 익명함수
+                return this.kor + this.eng; // 메소드는 자기 맴버를 가지고 작업
+            }
+        }
+    </script>
+</body>
+</html>

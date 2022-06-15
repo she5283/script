@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        #page {
+            background-color:cornsilk;
+            display: flex;
+            justify-content:space-around;
+        }
+        #page1 {
+            background-color:cornsilk;
+            display: flex;
+            justify-content:space-around;
+        }
+        #page2 {
+            background-color:cornsilk;
+            display: flex;
+            justify-content:space-around;
+            height: 100vh;
+        }
+        .photo {
+            margin: 35px 0;
+            left:30px;  
+            width: 120px;
+            float: left;
+            position: absolute;
+        }
+        .name {
+            vertical-align: bottom;
+            position: absolute;
+            right: 10px;
+            top: 80px;
+        }
+        .address {
+            right: 40px;
+            top: 60px;
+            vertical-align: bottom;
+            text-align: right;
+            position: absolute;
+        }
+        .tel {
+            top: 100px;
+            right: 10px;
+            position: absolute;
+            text-align: right;
+        }
+        .parent1 {
+            text-align : center;
+            vertical-align : middle;
+        }
+        .parent {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: wheat;
+            border:  2px solid green;
+            border-radius: 20px;
+            margin: 10px 0;
+        }
+        </style>
+    <style>
+    </style>
+    <script>
+        const url = 'http://sample.bmaster.kro.kr/contacts?pageno=3&pagesize=5';
+        const url1 = 'http://sample.bmaster.kro.kr/contacts?pageno=4&pagesize=5';
+        const url2 = 'http://sample.bmaster.kro.kr/contacts?pageno=5&pagesize=5';
+        // sample.bmaster 사이트
+        window.onload=function() {
+            $.ajax(url).done(function (x) {
+                const contacts = x.contacts;
+                const $page = $('#page');
+                for(c of contacts) {
+                    const $div = $('<div class="parent">').appendTo($page);
+                    const $div1 = $('<div class="parent1">').appendTo($div);
+                    $('<div class="address">').text(c.address).appendTo($div);
+                    $('<div class="tel">').text(c.tel).appendTo($div);
+                    $('<img class="photo">').attr('src',c.photo).appendTo($div);
+                    $('<div class="name">').text(c.name).appendTo($div);
+                }
+            });
+            $.ajax(url1).done(function (x) {
+                const contacts = x.contacts;
+                const $page = $('#page1');
+                for(c of contacts) {
+                    const $div = $('<div class="parent">').appendTo($page);
+                    const $div1 = $('<div class="parent1">').appendTo($div);
+                    $('<span class="address">').text(c.address).appendTo($div1);
+                    $('<span class="tel">').text(c.tel).appendTo($div1);
+                    $('<img class="photo">').attr('src',c.photo).appendTo($div);
+                    $('<div class="name">').text(c.name).appendTo($div);
+                }
+            });
+            $.ajax(url2).done(function (x) {
+                const contacts = x.contacts;
+                const $page = $('#page2');
+                for(c of contacts) {
+                    const $div = $('<div class="parent">').appendTo($page);
+                    const $div1 = $('<div class="parent1">').appendTo($div);
+                    $('<span class="address">').text(c.address).appendTo($div1);
+                    $('<span class="tel">').text(c.tel).appendTo($div1);
+                    $('<img class="photo">').attr('src',c.photo).appendTo($div);
+                    $('<div class="name">').text(c.name).appendTo($div);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="page"></div>
+    <div id="page1"></div>
+    <div id="page2"></div>
+</body>
+</html>

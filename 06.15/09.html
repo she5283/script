@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="htwindow.onloadtps://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        const ar = [
+            { irum: '홍길동', jumsu: 80 }, { irum: '전우치', jumsu: 75 }
+        ];
+
+        window.onload = function () {
+            // 점수를 ul안에 출력하는 함수를 만드시오
+            function printAr(ar) {
+                const $list = $('#list');
+                for (const sum of ar) {
+                    $(`<li>${sum.jumsu}</li>`).appendTo($list);
+                }
+            }
+            printAr(ar);
+
+            // jQuery로 선택한 객체는 자바스크립트 객체 + 양념
+            const obj1 = $('#list');
+            const obj2 = document.querySelector('#list');
+            console.log(obj1);
+            console.log(obj2);
+            console.log($(obj2)); // $를 쓰면 jQuery로 바뀜.
+        }
+    </script>
+</head>
+
+<body>
+    <ul id="list"></ul>
+</body>
+
+</html>

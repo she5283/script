@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const a = 5;
+        const b = -10;
+        console.log(Math.abs(a));
+        console.log(Math.abs(b)); // Math.abs() 절대값.
+
+        // 객체 : 속성과 메소드의 집합
+        // 매장(built-in) 객체 : js가 기본 제공하는 객체
+        // Math 객체 : 수학 함수와 상수를 모아놓은 객체
+        
+        // 사용자가 넘기는 값을 저장하는 변수 : 매개변수(parameter)
+        function abs(x){ // 입력받고 출력할때는 return
+            //return Math.abs(x);
+            // 함수의 결과값 : 리턴값
+
+            if (x>0) {
+                return x;
+            } else if (x<0) {
+                return -x;
+            }
+        }
+
+        console.log(abs(a));
+        console.log(abs(b));
+        console.log(abs(-20))
+    </script>
+</body>
+</html>

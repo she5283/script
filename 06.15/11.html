@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <!-- JSON : 객체를 문자열로 표시하는 산업표준 -->
+    <script>
+        const obj = {irum:'홍길동', nai:20};
+
+        // 객체를 json 문자열로 변환
+        const json = JSON.stringify(obj);
+        console.log(json);
+
+        // json문자열을 js객체로 변환
+        const result = JSON.parse(json);
+        console.log(result);
+    </script>
+</body>
+</html>
