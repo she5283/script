@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
 </head>
 
@@ -24,9 +25,9 @@
         function 확인 () {
             const input1 = document.querySelector('#weight').value;
             const input2 = document.querySelector('#height').value;
-            const bmi = parseInt(document.querySelector('#bmi'));
+            const bmi = document.querySelector('#bmi');
             const weight = input1/100;
-            const height = input2/(weight*weight);
+            const height = (input2/(weight*weight)).toFixed(2);
             if (height>=25) {
                 bmi.innerHTML = (`${height}(비만입니다.)`);
             } else if (height>=23) {
@@ -34,8 +35,9 @@
             } else if (height>=18.5) {
                 bmi.innerHTML = (`${height}(정상입니다.)`);
             } else {
-            bmi.innerHTML = (`${height}(정상입니다.)`);
+                bmi.innerHTML = (`${height}(정상입니다.)`);
             }
+            console.log(bmi);
         }
     </script>
 </body>

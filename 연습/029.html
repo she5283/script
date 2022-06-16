@@ -15,16 +15,26 @@
     <button id="e4">4</button>
     <button id="e5">5</button>
     <script>
-        
         // html을 이용한 이벤트 처리
-        
+        function handler1() {
+            alert('html을 이용한 이벤트 처리')
+        }
         // DOM level 0 이벤트 처리
-        
-        // DOM level 2 이벤트 처리
-        
+        document.querySelector('#e2').onclick = function() {
+            alert('DOM level 0 이벤트 처리')
+        }
+        // DOM level 2 이벤트 처리   
+        document.querySelector('#e3').addEventListener('click',function() {
+            alert('DOM level 2 이벤트 처리');
+        })
         // jQuery의 이벤트 메소드
-        
+        $('#e4').click(function() {
+            alert(4);
+        })
         // jQuery의 on 메소드
+        $('#e5').on('click',function() {
+            alert(5);
+        })
     </script>
 </body>
 </html>
