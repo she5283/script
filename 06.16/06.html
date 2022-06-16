@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>이벤트를 등록하는 방식</title>
+</head>
+
+<body>
+    <h1>이벤트 핸들러를 요소에 등록하는 방법들</h1>
+    <button onclick="handler1();">1</button>
+    <button id="e2">2</button>
+    <button id="e3">3</button>
+    <button id="e4">4</button>
+    <button id="e5">5</button>
+    <script>
+        function handler1() {
+            alert("html을 이용한 이벤트 처리");
+        }
+        document.querySelector('#e2').onclick = function() {
+            alert("DOM level 0 이벤트 처리");
+        }
+        // 이벤트 핸들러. 자바에서는 이벤트 리스너라고 한다. - 권장
+        // 콜백함수는 다른 함수에 매개변수로 전달된다
+        document.querySelector('#e3').addEventListener('click', function() {
+            alert("DOM level 2 이벤트 처리");
+        })
+
+        // jQuery의 이벤트 메소드
+        $("#e4").click(function() {
+            alert("4");
+        })
+
+        // jQuery의 on 메소드 - 권장
+        $("#e5").on('click', function() {
+            alert("5");
+        })
+    </script>
+</body>
+
+</html>

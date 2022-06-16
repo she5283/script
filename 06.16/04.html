@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+        /*  
+            static : 요소들의 기본 position 속성
+            relative : 현재 위치기준으로 이동 (left:300했을 떄 어디?)
+                        빈 공간 유지(레이아웃이 유지)
+            absolute : 부모 기준으로 이동
+                        부모는 relative 또는 absolute 여야한다
+                        해당하는 부모를 계속 찾다가 없으면 전체화면기준
+            부모 relative, 자식 absolute로 이동시키는 경우가 많다
+        */
+        #target1{
+            position: relative;
+            left: 300px;
+        }
+        #target2 {
+            position: absolute;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div style="border: 1px solid red;">A</div>
+    <div style="border: 1px solid green;" id="target1">B</div>
+    <div style="border: 1px solid blue;">C</div>
+    <div style="border: 1px solid violet;" id="target2">D</div>
+    <div style="border: 1px solid pink">E</div>
+</body>
+</html>

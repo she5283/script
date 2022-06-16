@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        // p요소를 클릭하면 클릭한 요소가 사라지게(display:none)하시오
+        // $().css('display','none')
+        $(document).ready(function () {
+            const $div = $('<div>').appendTo($('#page'));
+            for (let i = 1; i <= 3; i++) {
+                $('<p>').attr('id', 'p' + i).text('우리나라')
+                    .css('border', '1px solid red').appendTo($div);
+            }
+            // 이벤트 핸들러에서 이벤트가 발생한 곳 : $(this)
+            // $('p')라고 하면 p 3개의 배열이 잡힌다 (한번에 잡힘)
+            // $('p').click(function() {        $(this)를 사용하면 3개의 p태그를
+            // $(this).css('display','none')}   하나씩 적용시킴.
+            // mousedown -> mouseup -> click
+            $('p').click(function() {
+                $(this).css('display','none')
+            })
+            /*
+            $('#p1').on('click', function () {
+                $(this).css('display', 'none');
+            })
+            $('#p2').on('click', function () {
+                $(this).css('display', 'none');
+            })
+            $('#p3').on('click', function () {
+                $(this).css('display', 'none');
+            })
+            */
+        })
+    </script>
+</head>
+
+<body>
+    <div id="page">
+
+    </div>
+    <!-- 
+    <div>
+        <div>
+            <p id="p1">우리나라</p>
+            <p id="p2">우리나라</p>
+            <p id="p3">우리나라</p>
+        </div>
+    </div> 
+    -->
+</body>
+
+</html>
