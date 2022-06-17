@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>날씨앱 4단계 - 버튼 처리</title>
+    <style>
+        body {
+            height: 100vh;
+            background: url('http://www.civicnews.com/news/photo/202004/28513_40790_4024.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #app {
+            font-family: 'Nanum Gothic', sans-serif;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #box {
+            width: 300px;
+            height: 200px;
+            border-radius: 20px;
+            border: 2px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgba(240, 247, 255, 0.3);
+        }
+    </style>
+    <script>
+        const key = '32b2199fe0f64c8d59b8a81793bb1e01';
+        const cities = [
+            { name: '인천', code: 'Incheon' }, { name: '서울', code: 'Seoul' },
+            { name: '부산', code: 'Busan' }, { name: '도교', code: 'Tokyo' },
+            { name: '뉴욕', code: 'New York' }
+        ]
+        let cno = 0;
+        let weather = null;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${cities[cno].code}&appid=${key}&units=metric`
+        // const loading = `http://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif` 로딩 이미지
+        // 초기화 함수 : 도시 목록을 버튼으로 출력한다
+        function init() {
+            const $buttons = $('#buttons');
+            for (let i = 0; i < cities.length; i++) {
+                $('<button class="btn btn-primary">')
+                    .attr('data-cno', i).text(cities[i].name)
+                    .appendTo($buttons);
+                }
+            }
+            
+            function printWeather() {
+            $('#name').text(weather.name);
+            $('#temp').text(`온도:${weather.main.temp}도/습도:${weather.main.humidity}%`);
+            $('#cloud').text(weather.weather[0].description);
+        }
+
+        $(document).ready(async function () {
+            init();
+            weather = await $.ajax(url);
+            printWeather();
+            
+            // 이벤트 처리 코드는 반드시 $(document)안에
+            $('#buttons button').click(async function () {
+                    cno = parseInt($(this).attr('data-cno'));
+                    url = `https://api.openweathermap.org/data/2.5/weather?q=${cities[cno].code}&appid=${key}&units=metric`;
+                    weather = await $.ajax(url);
+                printWeather()
+            })
+        });
+        </script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Weather</h1>
+        <div id="box">
+            <div id="name">incheon</div>
+            <div id="temp">온도:20%/습도:80%</div>
+            <div id="cloud">scattere clouds</div>
+        </div>
+        <div id="buttons" class="btn-group">
+            <!-- 요소에 값을 저장할 때는 data - 속성을 사용한다 -->
+            <!-- <button type="button" class="btn btn-primary" data-city="Incheon">인천</button>
+            <button type="button" class="btn btn-primary" data-city="Seoul">서울</button>
+            <button type="button" class="btn btn-primary" data-city="Busan">부산</button>
+            <button type="button" class="btn btn-primary" data-city="Tokyo">도쿄</button>
+            <button type="button" class="btn btn-primary" data-city="New York">뉴욕</button> -->
+        </div>
+    </div>
+</body>
+
+</html>

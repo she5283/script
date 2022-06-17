@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            background: url(https://www.uhakbrain.com/wp-content/uploads/2016/03/landscape-922581_1280.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #app {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #box {
+            width: 300px;
+            height: 200px;
+            border: 2px solid royalblue;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+    <script>
+        // const loading = `http://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif` 로딩 이미지
+        const key = '32b2199fe0f64c8d59b8a81793bb1e01';
+        const cities = [
+            { name: '인천', code: 'Incheon' }, { name: '서울', code: 'Seoul' }
+            , { name: '부산', code: 'Busan' }, { name: '도쿄', code: 'Tokyo' }
+            , { name: '뉴욕', code: 'New York' }
+        ]
+        let cno = 0;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${cities[cno].code}&appid=${key}&units=metric`
+        let weather = null;
+        function printWeather() {
+            $('#name').text(weather.name);
+            $('#temp').text(`온도:${weather.main.temp}도/습도:${weather.main.humidity}%`);
+            $('#cloud').text(weather.weather[0].description);
+        }
+        function init() {
+            const $buttons = $('#buttons');
+            for (let i = 0; i < cities.length; i++) {
+                $('<button class="btn btn-primary">')
+                    .attr('data-cno', i).text(cities[i].name)
+                    .appendTo($buttons)
+                }
+        }
+        $(document).ready(async function () {
+            weather = await $.ajax(url)
+            init();
+            printWeather();
+            $('#buttons button').click(async function() {
+                cno = parseInt($(this).attr('data-cno'));
+                url = `https://api.openweathermap.org/data/2.5/weather?q=${cities[cno].code}&appid=${key}&units=metric`
+                weather = await $.ajax(url)
+                printWeather();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Weather</h1>
+        <div id="box">
+            <div id="name">lncheon</div>
+            <div id="temp">온도:20%/습도:80%</div>
+            <div id="cloud">scattere clouds</div>
+        </div>
+        <div class="btn-group" id="buttons">
+        </div>
+    </div>
+</body>
+
+</html>
