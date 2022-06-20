@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        // 변수를 let, var, const 없이 작성할 수 없다.
+        "use strict"    // 코드를 엄격하게 적용해라.
+
+        let 좌표 = null;
+        let 날씨 = null;
+        const key = '32b2199fe0f64c8d59b8a81793bb1e01'
+        async function getPosition() {
+            const url = `http://api.openweathermap.org/geo/1.0/direct?q=Incheon&limit=5&appid=${key}`
+            // const url = `https://api.openweathermap.org/data/2.5/weather?q=Incheon&appid=${key}&units=metric`
+            const result = await $.ajax(url);
+            const 위도 = result[0].lat;   // 앞에 변수를 쓰지 않으면 전역으로 적용됨.
+            const 경도 = result[0].lon;
+            좌표 = {위도, 경도};
+        }
+
+        function getFormatDate(date) {
+            // 날짜를 '6월20일'
+            return `${date.getMonth()+1}월${date.getDate()}일`
+        }
+
+        function getFormatTime(date) {
+            // 날짜를 '7:20'
+            return `${date.getHours()}:${date.getMinutes()}`
+        }
+        
+        async function getWeather() {
+            const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${좌표.위도}&lon=${좌표.경도}&appid=${key}&units=metric`
+            const result = await $.ajax(url);
+            const 일출 = new Date(result.current.sunrise*1000);
+            const 일몰 = new Date(result.current.sunset*1000);
+            const 온도 = result.current.temp;
+            const 습도 = result.current.humidity;
+
+            const 최저 = result.daily[0].temp.min;
+            const 최고 = result.daily[0].temp.max;
+            const 체감 = result.current.feels_like;
+            const 자외선 = result.current.uvi;
+
+            const 상태 = result.current.weather[0].main
+            let 예보 = [];
+            // 날씨 예보(result.daily)에서 내일과 모레의 날짜, 상태, 최고온도
+            for(let i=1;i<=2;i++) { // let i = 1로 한 이유는 내일과 내일 모레 날씨를 알기위해.(let i = 0으로 하면 오늘 날씨)
+                const sunrise = new Date(result.daily[i].sunrise*1000);
+                const 날짜 = getFormatDate(sunrise);
+                const 일출 = getFormatTime(sunrise);
+                const 상태 = result.daily[i].weather[0].main;
+                console.log({날짜, 일출, 상태});
+                예보[i-1] = {날짜, 일출, 상태};
+            }
+            날씨 = {일출, 일몰, 온도, 습도, 최저, 최고, 체감, 자외선, 상태, 예보};
+            console.log(날씨);
+        }
+
+
+        $(document).ready(async function() {
+            await getPosition();     // await를 넣지않으면 먼저 실행되서 언디파인드.
+            await getWeather();
+            // 서버 상태를 숫자로 표시
+            // 401 : 권한없음, 400 : 수신 거부, 404 : 주소없음
+            // 현재온도,) 최고, 최저, 습도, 날씨, 구름낀정도, 자외선, 일출, 일몰
+            // 일출시간, 일몰시간 - UTC 표시를 지역 시간으로 바꾸자
+            // js 내장객체 Date -> new를 사용(그때 그때 값이 다른 경우)
+            // console.log(sunrise.getFullYear());
+            // console.log(sunrise.getMonth()+1);   // 정해진 약속
+            // console.log(sunrise.getDate());
+            // console.log(sunrise.getDay());
+            // console.log(sunrise.getHours());
+            // console.log(sunrise.getMinutes());
+        })
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        "use strict"
+        let 좌표 = null;
+        let 날씨 = null;
+        let 먼지 = null;
+        let 총 = null;
+        const key = '32b2199fe0f64c8d59b8a81793bb1e01'
+        let url = `http://api.openweathermap.org/geo/1.0/direct?q=Incheon&limit=5&appid=${key}`
+        async function weeklyForecast() {
+            const result = await $.ajax(url)
+            const 위도 = result[0].lat
+            const 경도 = result[0].lon
+            좌표 = {위도, 경도};
+        }
+        function getFormatDate(date) {
+            return `${date.getMonth()+1}월${date.getDate()}일`
+        }
+        function getFormatTime(date) {
+            return `${date.getHours()}:${date.getMinutes()}`
+        }
+        async function getWeather() {
+            let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${좌표.위도}&lon=${좌표.경도}&appid=${key}&units=metric`
+            const result = await $.ajax(url);
+            const 일출 = new Date(result.current.sunrise*1000);
+            const 일몰 = new Date(result.current.sunset*1000);
+            const 현재온도 = result.current.temp;
+            const 최저온도 = result.daily[0].temp.min;
+            const 최고온도 = result.daily[0].temp.max;
+            const 습도 = result.current.humidity;
+            const 자외선 = result.current.uvi;
+            const 상태 = result.current.weather[0].main;
+            console.log(result);
+            let 예보 = [];
+            const $page = $('#page');
+            const $div = $(`<div>`).appendTo($page);
+            for(let i=1;i<=2;i++) {
+                const sunrise = new Date(result.daily[i].sunrise*1000);
+                const 날짜 = getFormatDate(sunrise);
+                const 일출 = getFormatTime(sunrise);
+                const 상태 = result.daily[i].weather[0].main;
+                $(`<div>날짜 : ${날짜}</div>`).appendTo($div)
+                $(`<div>일출 : ${일출}</div>`).appendTo($div)
+                $(`<div>날씨 : ${상태}</div>`).appendTo($div)
+                예보[i-1] = {날짜, 일출, 상태};
+            }
+            function aaa() {
+                    $(`<div>현재 온도 : ${현재온도}</div>`).appendTo($div)
+                    $(`<div>최저 온도 : ${최저온도}</div>`).appendTo($div)
+                    $(`<div>최고 온도 : ${최고온도}</div>`).appendTo($div)
+                    $(`<div>습도 : ${습도}</div>`).appendTo($div)
+                    $(`<div>자외선 : ${자외선}</div>`).appendTo($div)
+                }
+                aaa();
+            // for(let i = 0;i<=6;i++) {
+            //         $(`<div>현재온도 : ${현재온도}, 최저온도 : ${최저온도}, 최고온도 : ${최고온도}, 습도 : ${습도}, 자외선 : ${자외선}, 날씨 : ${상태}}</div>`).appendTo($div);
+            // }
+            날씨 = {일출, 일몰, 현재온도, 최저온도, 최고온도, 습도, 자외선, 상태};
+            // console.log(result);
+        }
+        async function fineDust() {
+            const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${좌표.위도}&lon=${좌표.경도}&appid=${key}`
+            const result = await $.ajax(url)
+            const 미세먼지 = result.list[0].components.pm10
+            const 초미세먼지 = result.list[0].components.pm2_5
+            먼지 = {미세먼지, 초미세먼지};
+        }
+        $(document).ready(async function() {
+            await weeklyForecast();
+            await getWeather();
+            await fineDust();
+            총 = {좌표, 날씨, 먼지};
+            console.log(총);
+        })
+        </script>
+</head>
+<body>
+    <div id="page">
+        
+    </div>
+</body>
+</html>
