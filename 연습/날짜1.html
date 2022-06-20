@@ -30,7 +30,7 @@
             const $div = $(`<div>`).appendTo($page);
             for(let i = 0; i<=6;i++) {
                 const 일출 = new Date(result.daily[i].sunrise*1000);
-                const 일몰 = new Date(result.daily[i].sunset*1000)
+                const 일몰 = new Date(result.daily[i].sunset*1000);
                 const 현재온도 = result.daily[i].temp.day;
                 const 최저온도 = result.daily[i].temp.min;
                 const 최고온도 = result.daily[i].temp.max;
@@ -58,6 +58,7 @@
         <div id="습도"></div>
         <div id="자외선"></div>
         <div id="상태"></div>
+        <div id="button"></div>
     </div>
     
 </body>
