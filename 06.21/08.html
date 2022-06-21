@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    async function aaa() {
+      // semple.bmaster에서 pageno는 3, pagesize는 10으로 요청
+      // urlencoded 형식
+      // 주소?pageno=3&pagesize=10
+      
+      const url = 'http://sample.bmaster.kro.kr/contacts';
+      // urlencoded 형식이 주소창에 찍힌 것을 querystring
+      const querystring = 'pageno=3&pagesize=10'
+      
+      // $.ajax를 보낼때 querystring을 포함한 주소라면 간단히 적을 수 있다.
+      // $.ajax(`${url}?${querystring}`) // 간단히
+      
+      const result = await $.ajax({ url: url, data: querystring }); // 길게
+      console.log(result);
+
+      // $.ajax는 js 객체를 urlencoded로 자동 변환된다
+      const obj = { pageno:3, pagesize:10};
+      const result2 = await $.ajax({url:url, data:obj});
+      console.log(result2);
+    }
+
+    aaa();
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

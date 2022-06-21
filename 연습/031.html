@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    async function getApiData() {
+      const url = 'http://sample.bmaster.kro.kr/contacts?pageno=1'
+      return await $.ajax(url);
+    }
+    function printApiData({contacts}) {
+      const $tbody = $('#print');
+      for (const d of contacts) {
+        const $tr = $('<tr>').appendTo($tbody);
+          $('<td>').text(d.no).appendTo($tr)
+          $('<td>').text(d.name).appendTo($tr)
+          $('<td>').text(d.address).appendTo($tr)
+      }
+    }
+    $(document).ready(async function () {
+      let data = await getApiData();
+      printApiData(data);
+      console.log(data);
+    })
+    // 5명 회원 데이터를 출력
+  </script>
+</head>
+
+<body>
+<table>
+  <tbody id="print">
+
+  </tbody>
+</table>
+</body>
+
+</html>

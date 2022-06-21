@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // ES6에서 {}는 스코프를 생성한다.
+
+        // 어디서나 사용가능 -> 전역(global)
+        let data = 10;
+        function es6() {
+            let a = 20;
+            {
+                // b는 초록색 중괄호가 스코프(scope)
+                let b = 30;
+                console.log(data, a, b);
+            }
+            console.log(data, a, b);
+        }
+        // es6();
+
+        // ES5에서는 함수만이 스코프를 생성한다.
+        function es5() {
+            var a = 20;
+            {
+                // b는 초록색 중괄호가 스코프(scope)
+                var b = 30;
+                console.log(data, a, b);
+            }
+            console.log(data, a, b);
+        }
+        es5();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

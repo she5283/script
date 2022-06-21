@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>$.ajax 서버로 값 넘기기</title>
+</head>
+<body>
+  <ul>
+    <li>urlencoded 형식으로 넘긴다</li>
+    <li>js 객체를 넘기면 $.ajax가 urlencoded로 자동 변환</li>
+    <li>form을 넘기려면 form을 선택한 다음 serialize()</li>
+  </ul>
+  <form action="http://sample.bmaster.kro.kr/contacts" id="frm">
+    pageno:<input type="text" name="pageno"><br>
+    pagesize:<input type="text" name="pagesize"><br>
+    <button type="button" onclick="print();">넘기기</button>
+  </form>
+  <script>
+    // 사용자가 입력한 값을 urlencoded로 바꿔야 하는데.....
+    function print() {
+      console.log($('#frm').serialize());
+    }
+  </script>
+</body>
+</html>

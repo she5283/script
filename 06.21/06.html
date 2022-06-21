@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        async function getApiData() {
+            const url = 'http://sample.bmaster.kro.kr/contacts?pageno=1'
+            return await $.ajax(url);
+        }
+
+        function printApiData({ contacts }) {
+            const $tbody = $('#list');
+
+            for (const c of contacts) {
+                const $tr = $('<tr>').appendTo($tbody);
+                $('<td>').text(c.no).appendTo($tr);
+                $('<td>').text(c.name).appendTo($tr);
+                $('<td>').text(c.address).appendTo($tr);
+            }
+        }
+
+        $(document).ready(async function () {
+            let data = await getApiData();
+
+            printApiData(data);
+
+            $('#print').click(function () {
+                printApiData(data);
+            });
+
+            // 이벤트 이름 함수는 정적인 요소의 이벤트만 처리가능
+            $('td').click(function () {
+                alert('클릭했어요');
+            });
+
+            // 동적으로 추가된 요소의 이벤트를 처리하려면
+            // $(넓은 선택자).on('이벤트이름', 선택자, 함수or익명함수)
+            $('#list').on('click', 'td', function () {
+                alert("동적요소도 처리합니다");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- 버튼을 클릭하면 data를 출력하도록 -->
+    <button id="print">출력</button>
+    <table>
+        <tbody id="list">
+
+        </tbody>
+    </table>
+</body>
+
+</html>

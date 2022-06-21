@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    // 예시)https://hasaway1.github.io/example1/forecast.html
+    async function getPosition(city, limit, key, positionUrl) {
+      const result = await $.ajax({
+        url: positionUrl,
+        data: { q: city, limit: limit, appid: key },
+        method: 'get',
+        processData: true
+      });
+      return { 위도: result[0].lat, 경도: result[0].lon };
+    }
+    async function getWeather(position, key, weatherUrl) {
+      const { 위도, 경도 } = position;
+      return await $.ajax({
+        url: weatherUrl, method: 'get', data: { lat: 위도, lon: 경도, appid: key }
+      })
+    }
+
+    async function getAir({ 위도, 경도 }, key, airUrl) {
+      return await $.ajax({
+        url: airUrl, method: 'get', data: { lat: 위도, lon: 경도, appid: key }
+      })
+    }
+
+    $(document).ready(async function () {
+      const key = '32b2199fe0f64c8d59b8a81793bb1e01';
+      const positionUrl = 'https://api.openweathermap.org/geo/1.0/direct';
+      const airUrl = 'https://api.openweathermap.org/data/2.5/air_pollution';
+      const weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+      const city = 'Incheon';
+      const limit = 1;
+      const position = await getPosition(city, limit, key, positionUrl);
+
+      // airUrl, weatherUrl에 대한 ajax 요청을 보내자
+
+      const weather = await getWeather(position, key, weatherUrl);
+      const air = await getAir(position, key, airUrl);
+
+      // daily : 주간예보 daily[0]~daily[7]. daily[0]은 오늘
+      // 시간 -> 출력이 대단히 대단히 복잡
+      //      -> 1970년 1월 1일 이후 흘러간 밀리초
+      // 날씨 api의 시간은 밀리초가 아니라 초 단위 : *1000 필요
+      const data = new Date(weather.daily[1].sunrise * 1000);
+
+      // 시간을 포멧을 지정해 출력하자
+      console.log(`${data.getMonth()+1}월 ${data.getDate()}일`);
+      console.log(`${data.getHours()}시 ${data.getMinutes()}분`);
+    })
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

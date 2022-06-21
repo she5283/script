@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        async function getApiData() {
+            const url = 'http://sample.bmaster.kro.kr/contacts?pageno=1'
+            // 비동기작업 - 병렬로 동시에 실행되는 작업들 =>
+            return await $.ajax(url);
+        }
+        
+        // 구조분해 할당
+        // 변수를 모아 객체를 또는 객체를 변수로 분해
+        // const no=1, name='홍길동';
+        // const obj = {no, name};  //{"no":no, "name":name}
+
+        // const{no, name} = obj
+        function printApiData({contacts}) {
+            // no, name, address
+            const $tbody = $('#list');
+            for ( const c of contacts) {
+                const $tr = $('<tr>').appendTo($tbody);
+                $('<td>').text(c.no).appendTo($tr);
+                $('<td>').text(c.name).appendTo($tr);
+                $('<td>').text(c.address).appendTo($tr);
+            }
+        }
+
+        $(document).ready(async function() {
+            let data = await getApiData();
+
+            // data : pageno, pagesize, totalcount, contacts
+            // 5명 회원 데이터를 출력
+            printApiData(data);
+        })
+    </script>
+</head>
+<body>
+    <table>
+        <tbody id="list">
+
+        </tbody>
+    </table>
+</body>
+</html>
