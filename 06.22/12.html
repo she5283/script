@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 반복문
+    const ar = [1,2,3,4,5];
+    // 배열의 원소를 하나씩 자동으로 꺼내는 반복문 => forEach문
+    for(a of ar) {
+      console.log(a);
+    }
+
+    for(let i =0;i<ar.length;i++){
+      console.log(a);
+    }
+
+    ar.forEach((a)=>console.log(a)); // 하나일때 괄호 생략 가능(왼쪽 a 매개변수)
+    ar.forEach((a,i)=>console.log(`${i}번째 원소 : ${a}`))
+
+    $.each(ar, function(idx, a) {
+      console.log(`${idx}번째 원소 : ${a}`)
+    })
+  </script>
+</body>
+</html>

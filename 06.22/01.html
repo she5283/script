@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>화살표 함수</title>
+  <script>
+    // js는 정적타입언어가 아니다.
+    // 정적:static, 동적: dynamic
+    // String a; 자바스타일
+    // 숫자 sum(숫자 a, 숫자 b) {return a+b;} 자바
+    function print(a, b) {
+      console.log(a+b);
+    }
+    function sum(a, b) {
+      // 리턴값이 결과
+      return a+b;
+    }
+    const r1 = print(2,3);
+    const r2 = sum(2,3);
+    console.log(r1);      // undefined
+    console.log(r2);
+  </script>
+</head>
+<body>
+  <ul>
+    <li>타입</li>
+    <li>화살표 함수</li>
+    <li>this</li>
+    <li>이벤트 객체</li>
+    <li>이벤트 캡처링, 이벤트 버블링</li>
+    <li>preveneDefault, stopPropagation</li>
+  </ul>
+</body>
+</html>

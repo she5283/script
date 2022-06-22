@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">1</button>
+  <button id="btn1">1</button>
+  <script>
+    // 버튼을 클릭하면 ajax통신을 한 다음 값을 증가시킨다(this로)
+    $('#btn').click(function () {
+      // 이벤트 핸들러에서 this는 이벤트가 발생한 곳
+      console.log($(this));
+      $.ajax('http://sample.bmaster.kro.kr/contacts')
+        .done(function (result) {
+          // $.ajax의 성공 핸들러에서 this는 서버의 응답
+          console.log($(this))
+          $(this).text(2);
+        })
+    });
+
+    $('#btn1').click(function () {
+      // this를 바뀌지않게 할려면 this를 저장하자
+      const _this = this;
+      $.ajax('http://sample.bmaster.kro.kr/contacts')
+        .done(function (result) {
+          $(_this).text(2);
+        })
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <a href="http://www.naver.com">네이버로</a>
+  <form action="http://www.naver.com">
+    <button>보내기</button>
+  </form>
+  <script>
+    // a 요소나 submit 요소는 클릭 + 고유의 동작(이동)을 가진다
+    // 두번째 고유 동작을 비활성화
+    $(document).ready(function() {
+      $('a').click(function(e) {
+        e.preventDefault();
+        if ('조건을 만족하면')
+        location.href = "";
+      })
+    })
+  </script>
+</body>
+</html>

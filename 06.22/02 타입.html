@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>undefined와 null의 차이</h1>
+  <script>
+    // 타입
+    // 기본타입 : string, nuber, boolean. 변수가 값을 저장
+    // 참조타입 : object(array)         . 변수가 정보를 가리킨다
+    let a;
+    let b = null;       // typeof : object
+    let c = {};         // typeof : object. 빈것을 가리킨다
+
+    console.log(undefined==null);     // 비교 시 반드시 ===사용(==는 타입은 비교안함)
+    console.log(undefined===null);
+  </script>
+</body>
+</html>

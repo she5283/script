@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 일반함수와 화살표함수의 차이점 1
+    const obj1 = {
+      irum:'홍길동',
+      kor:70,
+      eng:80,
+      tot:0,
+      // 이름을 출력하는 print메소드 추가.
+      print:function() {
+        console.log(this.irum);
+      },
+      setTot:function() {
+        this.tot = this.kor + this.eng;
+      }
+    }
+    
+    // ES6의 메소드 작성법
+    const obj2 = {
+      irum:'홍길동',
+      kor:70,
+      eng:80,
+      tot:0,
+      print() {
+        console.log(this.irum);
+      },
+      setTot() {
+        this.tot = this.kor + this.eng;
+      }
+    }
+  </script>
+</body>
+</html>
