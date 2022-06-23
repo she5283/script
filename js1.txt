@@ -14,3 +14,19 @@ Node.js
 비동기통신					Promise
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+https://hasaway1.github.io/example2/ 순서 참고(날씨)
+
+http 상태코드
+
+200 : 성공
+400 : 수신 거부
+401 : 인증되지 않음(너가 누군지 몰라. unauthorize)
+403 : 권한없음
+404 : not found
+500 : 서버 오류
+
+const init = (city) => {
+	const $buttons = $('#buttons')
+	city.forEach((city,i)=>$('<button>').attr('data-cno',i).text(city.name).appendTo($buttons))
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    function init(cities) {
+      const $app = $('#buttons')
+      for (let i = 0; i < cities.length; i++) {
+        $('<button>').attr('data-cno', i).text(cities[i].name).appendTo($app)
+      }
+    }
+
+    const getPosition = async(city,key,url)=> {
+      const params = {q:city,appid:key};
+      const ready = await $.ajax ({url:url,data:params})
+
+      console.log(ready);
+      console.log(ready[0].lat, ready[0].lon)
+    }
+
+    $(document).ready(() => {
+      const cities = [{ name: '인천', code: 'Incheon' }, { name: '도쿄', code: 'Tokyo' }, { name: '하노이', code: 'Ha Noi' }, { name: '방콕', code: 'Bangkok' }]
+
+      const key = '32b2199fe0f64c8d59b8a81793bb1e01'
+
+      const positionUrl = `http://api.openweathermap.org/geo/1.0/direct`;
+
+      let cno = 0;
+      init(cities)
+      getPosition(cities[cno].code,key,positionUrl);
+
+      $('button').click(function () {
+        const cno = parseInt($(this).attr('data-cno'))
+        getPosition(cities[cno].code,key,positionUrl);
+      })
+    })
+
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <div id="weather"></div>
+    <div id="buttons"></div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const init = (cities) => {
+      const $app = ('#buttons');
+      cities.forEach((city, i) => $('<button>').attr('data-cno', i).text(city.name).appendTo($app));
+    }
+
+    // http 상태코드
+    // 200 : 성공
+    // 400 : 수신 거부
+    // 401 : 인증되지 않음(너가 누군지 몰라. unauthorize)
+    // 403 : 권한없음
+    // 404 : not found
+    // 500 : 서버 오류
+    const getPosition = async (city, key, url) => {
+      // 요청 파라미터 : `?q=도시이름&appid=API키`;
+      // $.ajax는 요청 파라미터를 객체로 만드러 놓으면 자동으로 urlencoded 변환
+      const params = { q: city, appid: key };
+      const result = await $.ajax({ url: url, data: params })
+
+      // $.ajax : 비동기작업 -> 병렬로 실행
+      // $.ajax에 await안걸고 결과를 출력하면 Promise 객체
+      // Promise 객체는 비동기 작업의 결과를 의미하는 객체(성공? 실패?.....)
+
+      // 위경도를 ready 핸들러로 돌려보내 저장하자
+      return { 위도: result[0].lat, 경도: result[0].lon };
+    }
+
+    $(document).ready(async () => {
+      const cities = [{ name: '인천', code: 'Incheon' }, { name: '도쿄', code: 'Tokyo' }, { name: '하노이', code: 'Ha Noi' }, { name: '방콕', code: 'Bangkok' }]
+
+      const key = '32b2199fe0f64c8d59b8a81793bb1e01'
+
+      const positionUrl = `http://api.openweathermap.org/geo/1.0/direct`;
+
+      let cno = 0;
+      init(cities)
+      let position = await getPosition(cities[cno].code, key, positionUrl);
+      console.log(position)
+
+      $('button').click(async function () {
+        // 이벤트 핸들러의 선택자가 id 선택자가 아니면 결과는 배열
+        // 이벤트 핸들러 함수에서 이벤트가 발생한 곳을 this라고 부른다
+        // 함수에서 this는 window
+        // 메소드(객체소속 함수)에서는 this는 객체
+        // 이벤트 핸들러에서 this는 이벤트가 발생한 html 요소
+        // 화살표 함수의 this는 window다 -> 이벤트에서 this가 필요한경우 사용 불가
+
+        const cno = parseInt($(this).attr('data-cno'))
+        position = await getPosition(cities[cno].code, key, positionUrl)
+        console.log(position)
+      })
+    })
+    // function init(cities) {
+    //   const $app = $('#buttons')
+    //   for (let i = 0; i < cities.length; i++) {
+    //     $('<button>').attr('data-cno', i).text(cities[i].name).appendTo($app)
+    //   }
+    // }
+    // $(document).ready(function () {
+    //   const cities = [{ name: '인천', code: 'Incheon' }, { name: '도쿄', code: 'Tokyo' }, { name: '하노이', code: 'Ha Noi' }, { name: '방콕', code: 'Bangkok' }]
+    //   let cno = 0;
+    //   init(cities)
+    // })
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <div id="weather"></div>
+    <div id="buttons"></div>
+  </div>
+</body>
+
+</html>

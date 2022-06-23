@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    // function init(cities) {
+    //   const $buttons = $('#buttons');
+    //   for (let i=0;i<cities.length;i++) {
+    //     $('<button>').attr('data-cno',i).text(cities[i].name)
+    //       .appendTo($buttons)
+    //   }
+    // }
+
+    // $(document).ready(function() {
+    //   const key = '32b2199fe0f64c8d59b8a81793bb1e01'
+    //   const positionUrl = `http://api.openweathermap.org/geo/1.0/direct`;
+    //   const cities = [{ name: '부천', code: 'Bucheon-si' },
+    //   { name: '전주', code: 'Jeonju' }, { name: '부산', code: 'Busan' },
+    //   { name: '하와이', code: 'Hawaii' }, { name: '강릉', code: 'Gangneung-si' }];
+    //   let cno = 0;
+    //   init(cities);
+    // })
+    const init = (cities) => {
+      const $buttons = $('#buttons');
+      cities.forEach((city, i) => $('<button>').attr('date-cno', i)
+        .text(city.name).appendTo($buttons))
+    }
+
+    $(document).ready(() => {
+      const key = '32b2199fe0f64c8d59b8a81793bb1e01'
+      const positionUrl = `http://api.openweathermap.org/geo/1.0/direct`;
+      const cities = [{ name: '부천', code: 'Bucheon-si' },
+      { name: '전주', code: 'Jeonju' }, { name: '부산', code: 'Busan' },
+      { name: '하와이', code: 'Hawaii' }, { name: '강릉', code: 'Gangneung-si' }];
+      let cno = 0;
+
+      init(cities);
+      $('button').click(function () {
+        cno = parseInt($(this).attr('date-cno'));
+
+      });
+    });
+
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <div id="weather"></div>
+    <div id="buttons" class="btn-group"></div>
+  </div>
+</body>
+
+</html>
