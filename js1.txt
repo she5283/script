@@ -26,7 +26,11 @@ http 상태코드
 404 : not found
 500 : 서버 오류
 
-const init = (city) => {
-	const $buttons = $('#buttons')
-	city.forEach((city,i)=>$('<button>').attr('data-cno',i).text(city.name).appendTo($buttons))
-}
+			Back											Frunt
+								------->
+		REST				<-------				submit <= HTML(화면이동)
+									json
+
+								------->	
+		MVC					<-------				ajax <= (jsont상태코드)
+							HTML(200오류)

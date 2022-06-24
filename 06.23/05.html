@@ -25,12 +25,12 @@
       return { lat: result[0].lat, lon: result[0].lon }
     }
 
-    const getWeatherAndAir = async(position, weatherUrl, airUrl, key) => {
+    const getWeatherAndAir = async (position, weatherUrl, airUrl, key) => {
       const weatherAndAir = { lat: position.lat, lon: position.lon, appid: key }
-      const airApi = await $.ajax({url: airUrl,data: weatherAndAir});
+      const airApi = await $.ajax({ url: airUrl, data: weatherAndAir });
 
       weatherAndAir.units = 'metric'
-      const weatherApi = await $.ajax({url:weatherUrl,data:weatherAndAir});
+      const weatherApi = await $.ajax({ url: weatherUrl, data: weatherAndAir });
 
       console.log(weatherApi);
       console.log(airApi);

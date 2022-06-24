@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <style>
+    body {
+      height: 100vh;
+      background-color: rgb(215, 210, 238);
+    }
+
+    #app {
+      width: 600px;
+      margin: 0 auto;
+      background-color: #ef0;
+      border: 1px solid darkblue;
+      border-radius: 10px;
+    }
+
+    #input {
+      width: 530px;
+    }
+
+    .title {
+      display: inline-block;
+      width: 400px;
+    }
+
+    .done {
+      text-decoration: line-through;
+    }
+  </style>
+  <script>
+
+    const getPosition = (todos) => {
+      const $ul = $('#todos');
+      $ul.empty()
+      todos.forEach((todo, i) => {
+        const $li = $('<li>').attr('data-index', i).attr('class', 'todo').appendTo($ul);
+        if (todo.done === true) {
+          $('<span class="title">').attr('data-index', i).text(todo.title + " (완료)").addClass("done").appendTo($li)
+        } else {
+          $('<span class="title">').attr('data-index', i).text(todo.title).appendTo($li)
+        }
+        $('<span>').attr('class', 'close').attr('data-index', i).text("X").appendTo($li);
+      })
+    }
+
+    const addTodo = (todos) => {
+      todos.push({ title: $('#input').val(), done: false })
+      getPosition(todos);
+    }
+
+    $(document).ready(() => {
+      const todos = [
+        { title: '영화보기', done: false },
+        { title: '내려가기', done: false },
+        { title: 'ES6 학습', done: true },
+        { title: '복습하기', done: false }];
+      getPosition(todos);
+      
+      $('#input').keyup(function (e) {
+        if (e.keyCode == 13)
+          addTodo(todos);
+      })
+
+      $('#add').click(function () {
+        addTodo(todos);
+      })
+      
+      $('#todos').on('click','.title',function () {
+        todos[$(this).attr('data-index')].done =
+        !todos[$(this).attr('data-index')].done
+        getPosition(todos);
+      })
+
+      $('#todos').on('click','.close',function () {
+        todos.splice($(this).attr('data-index'),1)
+        getPosition(todos);
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" id="input" placeholder="입력 후 엔터!">
+    <button id="add">추가</button>
+    <ul id="todos"></ul>
+  </div>
+</body>
+
+</html>
