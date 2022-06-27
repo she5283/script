@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const init=(cities)=>{
+      const $buttons = $('#buttons')
+      cities.forEach((city,i)=>$('<button>').attr('data-cno',i).text(city.name).appendTo($buttons))
+    }
+
+    const getLatAedLon=async(city, key, latAedLonUrl)=>{
+      const params = {q:city, appid:key};
+      const result = await $.ajax({url:latAedLonUrl,data:params});
+      return{위도:result[0].lat,경도:result[0].lon}
+    }
+
+    const getFormatDate=(date)=>{
+      return  `${date.getMonth()+1}월 ${date.getDate()}일`;
+    }
+    const getWeatherAndAir=async({위도,경도},key,weatherUrl,airUrl)=>{
+      const ph={lat:위도,lon:경도,appid:key};
+      const airApi= await $.ajax({url:airUrl,data:ph});
+
+      ph.units = 'metric';
+      const weatherApi=await $.ajax({url:weatherUrl,data:ph});
+
+      const weather = weatherApi.current.weather[0].main;
+      const dayTemp = weatherApi.current.temp;
+      const sunrise = getFormatDate(new Date(weatherApi.current.sunrise*1000));
+      const airPm10 = airApi.list[0].components.pm10;
+      const airPm2_5 = airApi.list[0].components.pm2_5;
+
+      $('#weather').text(weather);
+      $('#dayTemp').text(dayTemp);
+      $('#sunrise').text(sunrise);
+      $('#airPm10').text(airPm10);
+      $('#airPm2_5').text(airPm2_5);
+    }
+
+
+
+    $(document).ready(async()=>{
+      const key = '32b2199fe0f64c8d59b8a81793bb1e01'
+      const positionUrl = `http://api.openweathermap.org/geo/1.0/direct`;
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/onecall`;
+      const airUrl = `https://api.openweathermap.org/data/2.5/air_pollution`;
+
+      const cities = [{ name: '부천', code: 'Bucheon-si' },
+      { name: '전주', code: 'Jeonju' }, { name: '부산', code: 'Busan' },
+      { name: '하와이', code: 'Hawaii' }, { name: '강릉', code: 'Gangneung-si' }];
+      let cno = 0;
+
+      init(cities);
+      let latLon = await getLatAedLon(cities[cno].code,key,positionUrl);
+      await getWeatherAndAir(latLon,key,weatherUrl,airUrl);
+      $('#buttons button').click(async function() {
+        cno = parseInt($(this).attr('data-cno'));
+        latLon = await getLatAedLon(cities[cno].code,key,positionUrl);
+        await getWeatherAndAir(latLon,key,weatherUrl,airUrl);
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="weather"></div>
+  <div id="dayTemp"></div>
+  <div id="sunrise"></div>
+  <div id="airPm10"></div>
+  <div id="airPm2_5"></div>
+  <div id="buttons"></div>
+</body>
+</html>

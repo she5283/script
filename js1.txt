@@ -16,6 +16,7 @@ Node.js
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 https://hasaway1.github.io/example2/ 순서 참고(날씨)
+https://hasaway1.github.io/example3/ 순서 참고(할일)
 
 http 상태코드
 

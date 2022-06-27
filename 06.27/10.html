@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    $(document).ready(()=>{
+      let pageno=1, pagesize=10, totalcount=87;
+      let countOfPage = Math.ceil(totalcount/pagesize)
+      let blocksize = 5;
+      // pageno   이전    시작    끝    다음
+      /*  1        0       1      5     6
+          2        0       1      5     6
+          3        0       1      5     6
+          4        0       1      5     6
+          5        0       1      5     6
+          6        5       6      9     0
+          7        5       6      9     0
+          8        5       6      9     0
+          9        5       6      9     0
+      */
+     for(pageno=1;pageno<=9;pageno++) {
+       let prev = Math.floor((pageno-1)/blocksize)*blocksize
+       let start = prev+1;
+       let end = prev+blocksize
+       let next = end +1
+       if(next>=countOfPage){
+         end =countOfPage
+         next =0;
+       }
+       console.log(`${pageno} : ${prev} ${start} ${end} ${next}`)
+      }
+    })
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

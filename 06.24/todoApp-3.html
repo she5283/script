@@ -22,7 +22,7 @@
     }
 
     const addTodo =(todos)=>{
-
+      todos.push({})
     }
 
     $(document).ready(()=>{
@@ -34,6 +34,7 @@
 
 
         getTodo(todos)
+        
 
         $('#input').keyup(function(e) {
           if(e.keyCode==13)

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+
+    const input=(todos)=>{
+      const $ul = $('#todos');
+      const $li = todos.forEach((todo,i)=>$('<li>').attr('data-i',i).attr('claas','todo').appendTo($ul);
+        if(todo.done===true){
+          $('<span class="title">').attr('data-i').text('todo.title' + '(완료)').appendTo($li)
+          } else{
+          $('<span class="title">').attr('data-i').text('todo.title').appendTo($li)
+        }
+    )}
+
+    $(document).ready(() => {
+      const todos = [
+        { title: '영화보기', done: false },
+        { title: '내려가기', done: false },
+        { title: 'ES6 학습', done: true },
+        { title: '복습하기', done: false }];
+
+        input(todos);
+    })
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" id="input" placeholder="입력 후 엔터!">
+    <button id="add">추가</button>
+    <ul id="todos"></ul>
+  </div>
+</body>
+
+</html>

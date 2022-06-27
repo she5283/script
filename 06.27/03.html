@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const url = 'http://sample.bmaster.kro.kr/contacts?pageno=1&pagesize=10';
+    $(document).ready(async () => {
+      const response = await $.ajax(url);
+      console.log(response);
+      // contacts, pageno:1, pagesize:10, totalcount:123
+      // 페이지의 개수: 13
+      let pageno = 1, pagesize = 10, totalcount = 123;
+      let countOfPage = Math.ceil(totalcount / pagesize);
+      let blocksize = 5;
+      // pageno   이전    시작    끝    다음
+      /*  1        0      1       5     6
+          2        0      1       5     6
+          3        0      1       5     6
+          4        0      1       5     6
+          5        0      1       5     6
+          6        5      6       10    11
+          7        5      6       10    11
+          8        5      6       10    11
+          9        5      6       10    11
+          10       5      6       10    11
+          11       10     11      13    0
+          12       10     11      13    0
+          13       10     11      13    0
+      */
+      for (pageno = 1; pageno <= 13; pageno++) {
+        let prev = Math.floor((pageno - 1) / blocksize) * blocksize;
+        let start = prev + 1;
+        let end = prev + blocksize;
+        let next = end + 1;
+        if(end>=countOfPage) {
+          end = countOfPage;
+          next = 0;
+        }
+        console.log(`${pageno} : ${prev} ${start} ${end} ${next}`);
+      }
+    })
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
