@@ -1,7 +1,8 @@
 웹 브라우저 - html과 css는 스스로 처리
 웹 브라우저는 자바스크립트 엔진을 탑재하고 있따
-      <script> ~ </script>
+	<script> ~ </script>
 
 자바 - sun에서 개발한 프로그래밍 언어
 - 개발용 자바 : JDK
 - 실행용 자바 : JRE,JVM, 가상머신
+- JDK는 JRE를 포함한다

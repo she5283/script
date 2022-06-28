@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    // 1. list.html?pageno??에서 pageno를 추출(location.search)
+    // 2. 만약 없다면 pageno에 1을 주자
+    // 3. pageno와 pagesize(10)로 api 서버에 요청을 보내자
+    // 4. 응답의 contacts를 가지고 #list에 번호,이름,주소,연락처 출력
+    // 5. 이름에 read.html로 가는 링크를 건다
+    // 6. pageno, pagesize, totalcount로 prev, start, end, next를 계산
+    // 7. 계산한 정보로 pagination을 출력
+    // 8. pagination을 가운데 정렬
+
+    const getPageno = () => {
+      // const pageno = location.search.substr(8);
+      // return (pageno === '') ? 1 : parseInt(pageno);
+
+      // pageno를 정확히 입력하면 parseInt한 결과는 number
+      const str = location.search.substr(8);
+      const pageno = parseInt(str);
+      if (isNaN(pageno) === true)
+        return 1;
+      return pageno;
+    }
+    const getResponse = async (pageno, pagesize = 10) => {
+      const url = 'http://sample.bmaster.kro.kr/contacts';
+      const params = { pageno, pagesize };
+      return await $.ajax({ url: url, data: params });
+    }
+    const printContacts = (contacts) => {
+      const $list = $('#list')
+      contacts.forEach(c=>{
+        const $tr = $('<tr>').appendTo($list);
+        $('<td>').text(c.no).appendTo($tr);
+        const $td = $('<td>').appendTo($tr);
+        $('<a>').attr('href',`read.html?no=${c.no}`).text(c.name)
+          .appendTo($td);
+        $('<td>').text(c.address).appendTo($tr);
+        $('<td>').text(c.tel).appendTo($tr);
+      })
+    }
+    const getPagination=({pageno, pagesize, totalcount, blocksize=5})=>{
+        const countOfPage = Math.ceil(totalcount/pagesize);
+        const prev = Math.floor((pageno-1)/blocksize)*blocksize;
+        const start = prev + 1;
+        let end = prev + blocksize;
+        let next = end + 1;
+        if(end>=countOfPage) {
+          end = countOfPage;
+          next = 0;
+        }
+        return {pageno, prev, start, end, next};
+      }
+      const printPagination=({pageno, prev, start, end, next})=>{
+        const $ul = $('#page .pagination');
+        const url = "list.html?pageno="
+        if(prev>0) {
+          const $li=$('<li class="page-item">').appendTo($ul);
+          $(`<a class="page-link" href="${url}${prev}">`).text('이전').appendTo($li);
+        }
+        for(let i=start; i<=end; i++) {
+          const $li=$('<li class="page-item">').appendTo($ul);
+          $(`<a class="page-link" href="${url}${i}">`).text(i).appendTo($li);
+          if(i===pageno)
+            $li.addClass('active');
+        }
+        if(next>0) {
+          const $li=$('<li class="page-item">').appendTo($ul);
+          $(`<a class="page-link" href="${url}${next}">`).text('다음').appendTo($li);
+        }
+      }
+
+    $(document).ready(async () => {
+      const pageno = getPageno();     // 1, 2
+      const response = await getResponse(pageno);
+      printContacts(response.contacts);        // 4, 5
+      const pagination = getPagination(response);
+      printPagination(pagination);
+    })
+  </script>
+</head>
+
+<body>
+  <div id="page">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>이름</th>
+          <th>주소</th>
+          <th>연락처</th>
+        </tr>
+      </thead>
+      <tbody id="list">
+      </tbody>
+    </table>
+    <ul class="pagination" style="display:flex; justify-content:center;">
+
+    </ul>
+  </div>
+</body>
+
+</html>
