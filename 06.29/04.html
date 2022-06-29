@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    const bno =111;
+    // js로 폼을 만들던지 아니면 js 객체를 만든다.
+    $('#good').click(function() {
+      const response = await $.ajax(`/board/gool?bno=${dno}`)
+    })
+    $('#update').click(function() {
+      const params ={
+        bno:bno,
+        title:$('#title').val(),
+        content:$('#content').val()
+      };
+      const response = await $.ajax({
+        url:'/board/update',
+        data:params,
+        method:'put'
+      })
+    })
+  </script>
+</head>
+<body>
+  <button id="good" data-no="111">추천</button>
+  <button id="bad" data-no="111">비추천</button>
+  <hr>
+  <input type="text" id="title" value="제목입니다.">
+  <textarea id="content"></textarea>
+  <hr>
+  <button id="update">변경</button>
+  <button id="delete">삭제</button>
+</body>
+</html>

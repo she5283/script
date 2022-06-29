@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>리스트 페이지</title>
+  <script>
+    // REST는 화면에 데이터를 저장할 수 있다. 이동하면 모든 것은 처음부터
+    // list.html?page=3 형식으로 페이지 번호를 읽어오자
+    // list.html로 실행하면 빈문자열 -> page는 1로 하자
+    function getpage() {
+      let page = parseInt(location.search.substr(6));
+      // 만약에 숫자 변환에 실패하면 NaN
+      if (isNaN(page) === true)
+        return 1;
+      return page;
+    }
+
+    async function getResponse(api, page, pagesize) {
+      const params = { pageno: page, pagesize };
+      // await비동기 : 병렬 실행되는 함수
+      return await $.ajax({ url: api, data: params });
+    }
+
+    $(document).ready(async function () {
+      const pagesize = 10;
+      const api = 'http://sample.bmaster.kro.kr/contacts';
+
+      const page = getpage();
+      const response = await getResponse(api, page, pagesize);
+      // printContacts(response);
+      // const pagination = getPagination(response);
+      // printPagination(pagination);
+    })
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

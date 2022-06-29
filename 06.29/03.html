@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    // 폼을 직접 보내지 않고 js로 검증 후 submit
+    $('#login').click(function() {
+      $('#loginForm').submit();
+    });
+
+    // 폼을 이용해 ajax를 보낸다면
+    $('#login').click(function() {
+      $.ajax({
+        url:'서버 주소',
+        // data의 기본형식 : aaa=bbb&ccc=ddd
+        data: $('#loginForm').serialize()
+      })
+      alert(`당신의 아이디는 ${response.username}입니다.`)
+    })
+  </script>
+</head>
+<body>
+  <form id="loginForm"action="#" method="get" enctype="application/x-www-form-urlencoded">
+    <input type="file" name="profile">
+    <input type="text" id="username" value="spring" name="username">
+    <input type="text" id="password" value="1234" name="password">
+    <button type="button" id="login">로그인</button>
+</body>
+</html>
