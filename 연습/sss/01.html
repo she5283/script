@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const getpageno = () => {
+      const pageno = parseInt(location.search.substr(8));
+      if (isNaN(pageno) === true)
+        return 1;
+      return pageno;
+    }
+
+    const getResponse = async (url, pageno, pagesize = 10) => {
+      const params = { pageno, pagesize };
+      return await $.ajax({
+        url,
+        data: params
+      })
+    }
+
+    const getPagination = (contacts) => {
+      const $tr = $('#list');
+      contacts.forEach(c => {
+        const $td = $('<tr>').appendTo($tr);
+        $('<td>').text(c.no).appendTo($td)
+        const $a = $('<td>').appendTo($td)
+        $('<a>').attr('href', '/06.30/read.html').text(c.name).appendTo($td)
+        $('<td>').text(c.address).appendTo($td)
+        $('<td>').text(c.tel).appendTo($td)
+      })
+    }
+
+    const printContact = ({ pageno, pagesize, totalcount, b = 5 }) => {
+      const countOfPage = Math.ceil(totalcount / pagesize);
+      const prev = Math.floor((pageno - 1) / b) * b;
+      const start = prev + 1;
+      let end = prev + b;
+      let next = end + 1;
+      if (end >= countOfPage) {
+        end = countOfPage
+        next = 0;
+      }
+      return { pageno, prev, start, end, next }
+    }
+
+    const printPagination = ({ pageno, prev, start, end, next }) => {
+      const $ul = $('#ul1')
+      if (prev > 0) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `/연습/sss/01.html?pageno=${prev}`).text('이전').appendTo($li)
+      }
+      for (let i = start; i <= end; i++) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `/연습/sss/01.html?pageno=${i}`).text(i).appendTo($li)
+      }
+      if (next > 0) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `/연습/sss/01.html?pageno=${next}`).text('다음').appendTo($li)
+      }
+    }
+
+    $(document).ready(async () => {
+      const url = 'http://sample.bmaster.kro.kr/contacts';
+      const pageno = getpageno()
+      const response = await getResponse(url, pageno)
+      getPagination(response.contacts)
+      const p = printContact(response)
+      printPagination(p)
+    })
+  </script>
+</head>
+
+<body>
+  <div id="page">
+    <table>
+      <thead>
+        <tr>
+          <td>번호</td>
+          <td>이름</td>
+          <td>주소</td>
+          <td>전화번호</td>
+        </tr>
+      </thead>
+      <tbody id="list">
+      </tbody>
+    </table>
+    <ul id="ul1">
+
+    </ul>
+  </div>
+</body>
+
+</html>
