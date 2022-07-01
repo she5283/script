@@ -6,3 +6,9 @@
 - 개발용 자바 : JDK
 - 실행용 자바 : JRE,JVM, 가상머신
 - JDK는 JRE를 포함한다
+
+lombok 다운(Java->sks->java실행프로그램지정)
+프로젝트 오른쪽클릭 후 -> configure -> maven 누른 후 생성된 파일 pom.xml에서
+lombok 홈페이지 접속 lnstall -> maven -> adding lombok to your pom file 코드 복사 붙히기
+or
+maver lombok라 치고도 나옴

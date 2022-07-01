@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    'ues strict'
+    const getpageno = () => {
+      const pageno = parseInt(location.search.substr(8))
+      if (isNaN(pageno) === true)
+        return 1;
+      return pageno
+    }
+
+    const getResponse = async (pageno, api, pagesize = 10) => {
+      const params = { pageno, pagesize };
+      return await $.ajax({
+        url: api,
+        data: params
+      })
+    }
+
+    const p = (contacts) => {
+      const $tr = $('#list');
+      contacts.forEach(c => {
+        const $td = $('<tr>').appendTo($tr);
+        $('<td>').text(c.no).appendTo($td)
+        const $a = $('<td>').appendTo($td)
+        $('<a>').attr('href', '/07.01/read.html').text(c.name).appendTo($a);
+        $('<td>').text(c.address).appendTo($td)
+        $('<td>').text(c.tel).appendTo($td)
+      })
+    }
+
+    const getButton = ({ pageno, pagesize, totalcount, b = 5 }) => {
+      const countOfPage = Math.ceil((totalcount - 1) / pagesize);
+      const prev = Math.floor((pageno - 1) / b) * b
+      const start = prev + 1
+      let end = prev + b
+      let next = end + 1
+      if (end >= countOfPage) {
+        end = countOfPage;
+        next = 0;
+      }
+      return { pageno, prev, start, end, next }
+    }
+
+    const pushButton = ({ pageno, prev, start, end, next }) => {
+      const $ul = $('#add');
+      const url = '/07.01/list연습01.html?pageno='
+      if (prev > 0) {
+        const $li = $('<li>').appendTo($ul)
+          $('<a>').attr('href', `${url}${prev}`).text('이전').appendTo($li)
+          }
+      for (let i = start; i <= end; i++) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `${url}${i}`).text(i).appendTo($li)
+      }
+      if (next > 0) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `${url}${next}`).text('다음').appendTo($li)
+      }
+    }
+
+    $(document).ready(async () => {
+      const api = 'http://sample.bmaster.kro.kr/contacts';
+      const pageno = getpageno();
+      const response = await getResponse(pageno, api);
+      p(response.contacts);
+      const pro = getButton(response);
+      pushButton(pro);
+    })
+  </script>
+</head>
+
+<body>
+  <div id="page">
+    <table>
+      <thead>
+        <tr>
+          <td>번호</td>
+          <td>이름</td>
+          <td>주소</td>
+          <td>연락처</td>
+        </tr>
+      </thead>
+      <thead id="list"></thead>
+    </table>
+    <ul id="add">
+
+    </ul>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+MVC
+       get : 상태변경X -> read
+       post : 상태가 변경된다
+
+REST
+       get : read
+       post : create // 파일, 사진이 포함되면 post로 put은 안됌
+       put : update
+       delete : delete
