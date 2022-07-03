@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    $(document).ready(function () {
+      $('#add').click(async function () {
+        const response = await $.ajax({
+          url: 'http://sample.bmaster.kro.kr/contacts/',
+          method: 'post',
+          data: $('#form_photo').serialize()
+        })
+        const no = response.no
+        const formData = new FormData();
+        formData.append('photo',$('#photo')[0].files[0]);
+        await $.ajax({
+          url: `http://sample.bmaster.kro.kr/contacts/${no}/photo`,
+          method: 'post',
+          data:formData,
+          processData:false,
+          contentType:false
+        })
+        location.href="/home1/07.03/연습1.html"
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <form id="form_photo">
+    이름:<input type="text" id="nama" name="name"><br>
+    주소:<input type="text" id="address" name="address"><br>
+    전화번호:<input type="text" id="tel" name="tel"><br>
+    <input type="file" id="photo" name="photo">
+    <button type="button" id="add">추가</button>
+  </form>
+</body>
+
+</html>

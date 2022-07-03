@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const getPageno = () => {
+      const pageno = parseInt(location.search.substr(8));
+      if (isNaN(pageno) === true)
+        return 1;
+      return pageno
+    }
+
+    const getInformation = async (api, pageno, pagesize = 10) => {
+      const params = { pageno, pagesize };
+      return await $.ajax({ url: api, data: params })
+    }
+
+    const getPagePrint = (contacts) => {
+      const $tr = $('#print');
+      contacts.forEach(c => {
+        const $td = $('<tr>').appendTo($tr);
+        $('<td>').text(c.no).appendTo($td)
+        const $a = $('<td>').appendTo($td)
+        $('<a>').attr('href', `/home1/07.03/연습2.html?no=${c.no}`).text(c.name).appendTo($a)
+        $('<td>').text(c.address).appendTo($td)
+        $('<td>').text(c.tel).appendTo($td)
+      })
+    }
+
+    const getPageCalculation = ({ pageno, pagesize, totalcount, b = 5 }) => {
+      const calculation = Math.ceil((totalcount - 1) / pagesize);
+      const prev = Math.floor((pageno - 1) / b) * b
+      const start = prev + 1;
+      let end = prev + b
+      let next = end + 1
+      if (end >= calculation) {
+        end = calculation
+        next = 0;
+      }
+      return { pageno, prev, start, end, next }
+    }
+
+    const printPagination = ({ pageno, prev, start, end, next }) => {
+      const $ul = $('#list')
+      const url = "/home1/07.03/연습1.html?pageno="
+      if (prev > 0) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `${url}${prev}`).text('이전').appendTo($li)
+      }
+      for (let i = start; i <= end; i++) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `${url}${i}`).text(i).appendTo($li)
+      }
+      if (next > 0) {
+        const $li = $('<li>').appendTo($ul)
+        $('<a>').attr('href', `${url}${next}`).text('다음').appendTo($li)
+      }
+    }
+
+    $(document).ready(async () => {
+      const api = "http://sample.bmaster.kro.kr/contacts";
+      const pageno = getPageno();
+      const respotion = await getInformation(api, pageno);
+      getPagePrint(respotion.contacts);
+      const pagination = getPageCalculation(respotion);
+      printPagination(pagination);
+    })
+  </script>
+</head>
+
+<body>
+  <div id="add">
+    <table>
+      <thead>
+        <tr>
+          <td>번호</td>
+          <td>이름</td>
+          <td>주소</td>
+          <td>연락처</td>
+        </tr>
+      </thead>
+      <tbody id="print">
+
+      </tbody>
+    </table>
+    <ul id="list">
+
+    </ul>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const getNo = () => {
+      const no = parseInt(location.search.substr(4))
+      if (isNaN(no))
+        location.href = "/home1/07.03/연습1.html"
+      else
+        return no
+    }
+
+    const printPage = async (api, no) => {
+      return await $.ajax({url:api+no})
+    }
+
+    const getPrint = ({ no, name, address, tel, photo }) => {
+      $('#no').text(no);
+      $('#name').text(name);
+      $('#photo').attr('src', photo);
+      $('#address').text(address);
+      $('#tel').text(tel);
+    }
+
+    $(document).ready(async function() {
+      const api = "http://sample.bmaster.kro.kr/contacts/";
+      const no = getNo();
+      const response = await printPage(api, no)
+      getPrint(response);
+    })
+  </script>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <td id="no"></td>
+    </tr>
+    <tr>
+      <td id="name"></td>
+    </tr>
+    <tr>
+      <td><img id="photo"></td>
+    </tr>
+    <tr>
+      <td id="address"></td>
+    </tr>
+    <tr>
+      <td id="tel"></td>
+    </tr>
+  </table>
+</body>
+
+</html>

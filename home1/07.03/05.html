@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    $(document).ready( function () {
+      $('#add').click(async function() {
+        const addUrl = 'http://sample.bmaster.kro.kr/contacts';
+        const response = await $.ajax({
+          url:addUrl,
+          method: 'post',
+          data: $('#join_form').serialize()
+        })
+        const no = response.no;
+        const photoUrl = `http://sample.bmaster.kro.kr/contacts/${no}/photo`;
+        const formData = new FormData();
+        formData.append('photo',$('#photo')[0].files[0]);
+        await $.ajax({
+          url:photoUrl,
+          method: 'post',
+          data: formData,
+          processData: false,
+          contentType: false
+        })
+        location.href = "/home1/07.03/02.html"
+      })
+    })
+  </script>
+</head>
+<body>
+  <div>
+    <form id="join_form">
+      이름:<input type="text" id="name" name="name"><br>
+      연락처:<input type="text" id="tel" name="tel"><br>
+      주소:<input type="text" id="address" name="address"><br>
+      <input type="file" id="photo">
+      <button type="button" id="add">추가</button>
+    </form>
+  </div>
+</body>
+</html>
