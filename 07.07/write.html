@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    $(document).ready(function () {
+      $('#app').click(async function () {
+        const formData = new FormData(document.querySelector('#form-link'))
+        await $.ajax({
+          url: "http://192.168.0.34:8081/board/new",
+          method: 'post',
+          data: formData,
+          processData: false,
+          contentType: false
+        })
+        location.href="/07.07/list2.html"
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <form id="form-link">
+    제목:<input type="text" id="title" name="title"><br>
+    내용:<input type="text" id="content" name="content"><br>
+    작성자:<input type="text" id="writer" name="writer"><br>
+    사진 : <input type="file" name="attachment"><br>
+    <button type="button" id="app">추가</button>
+  </form>
+</body>
+
+</html>

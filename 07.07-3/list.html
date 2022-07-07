@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const getPageno = () => {
+      const pageno = parseInt(location.search.substr(8))
+      if (isNaN(pageno) === true)
+        return 1
+      return pageno
+    }
+
+    const getResponse = async (api, pageno) => {
+      const params = { pageno }
+      return await $.ajax({
+        url: api,
+        data: params
+      })
+    }
+
+    const printBoardList = (boardList) => {
+      const $tr = $('#list')
+      boardList.forEach(c=>{
+        const $td = $('<tr>').appendTo($tr)
+          $('<td>').text(c.bno).appendTo($td)
+          const $a = $('<td>').appendTo($td)
+            $('<a>').attr('href',`/07.07-3/read.html?bno=${c.bno}`).text(c.title).appendTo($a)
+          $('<td>').text(c.writeTime).appendTo($td)
+          $('<td>').text(c.writer).appendTo($td)
+          $('<td>').text(c.readCnt).appendTo($td)
+      })
+    }
+
+    const getPagination=({pageno,pagesize,totalcount,b=5})=>{
+      const countOfPage = Math.ceil(totalcount/pagesize);
+      const prev = Math.floor((pageno-1)/b)*b
+      const start = prev +1;
+      let end = prev + b;
+      let next = end + 1;
+      if(end>=countOfPage) {
+        end = countOfPage
+        next = 0 ;
+      }
+      return{pageno,prev,start,end,next}
+    }
+
+    const printPagination=({pageno,prev,start,end,next})=>{
+      const $ul = $('#add')
+      const url = "/07.07-3/list.html?pageno="
+      if(prev>0){
+        const $li = $('<li>').appendTo($ul)
+          $('<a>').attr('href',`${url}${prev}`).text('이전').appendTo($li)
+          }
+          for(let i = start; i<=end; i++){
+        const $li = $('<li>').appendTo($ul)
+          $('<a>').attr('href',`${url}${i}`).text(i).appendTo($li)
+          }
+          if(next>0) {
+        const $li = $('<li>').appendTo($ul)
+          $('<a>').attr('href',`${url}${next}`).text('다음').appendTo($li)
+      }
+    }
+
+    $(document).ready(async function () {
+      const api = "http://192.168.0.34:8081/board/all"
+      const pageno = getPageno();
+      const response = await getResponse(api, pageno);
+      console.log(response)
+      printBoardList(response.boardList);
+      const pagination = getPagination(response);
+      printPagination(pagination);
+    })
+  </script>
+</head>
+
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <td>번호</td>
+          <td>제목</td>
+          <td>작성시간</td>
+          <td>작성자</td>
+          <td>조회수</td>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
+    <ul id="add"></ul>
+  </div>
+</body>
+
+</html>

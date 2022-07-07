@@ -1,0 +1,31 @@
+#page {
+width: 800px;
+margin: 0 auto;
+}
+
+header,
+nav,
+footer {
+height: 50px;
+background-color:aquamarine;
+}
+
+#main {
+display: flex;
+justify-content: space-between;
+}
+
+aside {
+flex-grow: 1;
+background-color:lightgreen;
+}
+
+section {
+flex-grow: 3;
+min-height: 600px;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+}

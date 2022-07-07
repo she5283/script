@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script>
+    const getBno=()=>{
+      const bno = parseInt(location.search.substr(5))
+      if(isNaN(bno))
+      location.href="/07.07-2/list.html"
+      else
+      return bno
+    }
+
+    const getResponse=async(api,bno)=>{
+      return await $.ajax(api+bno);
+    }
+
+    const printContact=({bno,attachment,readCnt,title,writeTime,writer})=>{
+      $('#bno').text(bno);
+      $('#title').text(title);
+      $('#attachment').attr('src',attachment)
+      $('#readCnt').text(readCnt)
+      $('#writeTime').text(writeTime)
+      $('#writer').text(writer)
+    }
+
+    $(document).ready(async function() {
+      const api = "http://192.168.0.34:8081/board/";
+      const bno = getBno();
+      const response = await getResponse(api,bno);
+      printContact(response)
+    })
+  </script>
+</head>
+<body>
+  <div>
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr>
+          <td id="bno"></td>
+        </tr>
+        <tr>
+          <td id="title"></td>
+        </tr>
+        <tr>
+          <td>
+            <img id="attachment">
+          </td>
+        </tr>
+        <tr>
+          <td id="writeTime"></td>
+        </tr>
+        <tr>
+          <td id="writer"></td>
+        </tr>
+        <tr>
+          <td id="readCnt"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

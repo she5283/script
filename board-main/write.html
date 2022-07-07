@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <form id="write_form">
+      글쓴이 : <input type="text" name="writer"><br>
+      제목 : <input type="text" name="title"><br>
+      내용 : <input type="text" name="content"><br>
+      사진 : <input type="file" name="attachment"><br>
+      <button id="write" type="button">글쓰기2</button>
+    </form>
+    <script>
+      $('#write').click(async function() {
+        const formData = new FormData(document.querySelector('#write_form'));
+        await $.ajax({
+          url: "http://192.168.0.34:8081/board/new",
+          method:"post",
+          data: formData,
+          processData: false,   // data속성을 urlencoded 형식으로 변환X
+          contentType: false    // contentType을 form-data로 지정
+        });
+        location.href = "/board-main/list.html";
+      })
+    </script>
+  </body>
+</html>
