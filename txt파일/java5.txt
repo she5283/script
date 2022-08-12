@@ -1,0 +1,25 @@
+- 타입(wrapper class)
+정수	int->lnteger, long->Long
+	long a = 10L;
+실수	double->Double
+문자	char->Character
+boolean	boolean->Boolean
+
+- static
+	객체가 꼭 필요한 경우에만 객체를 만들어라
+- 함수
+	- 제품번호,Product,List<Product>
+	class ProductServuice {
+		// crud
+		public Product add(Product product) {
+			list.add(product);
+			return product;
+		}
+	}
+
+- 클래스와 클래스
+
+
+
+
+- 함수

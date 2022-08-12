@@ -1,0 +1,5 @@
+https://www.oracle.com/database/technologies/xe-prior-release-downloads.html들어가서
+64.다운로드 진행
+진행 후 오라클 검색창에 SQL Developer 클릭 후 다운로드 들어가기
+그 후 자바 포함되어있지않은 Windows-32-bit/64-bit 다운로드 하기
+다운로드 완료 한 후 java폴더에 옴겨서 실행

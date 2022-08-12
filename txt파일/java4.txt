@@ -1,0 +1,10 @@
+Board: 번호, 제목, 내용, 글쓴이, 글쓴시간, 조회수
+			url		입력			출력
+WriteController		/board/new	제목,내용,글쓴이		Board
+ListController		/board?pageno=1	pageno			Page
+ReadController		/read?bno=1	bno			Board
+UpdateController		/update		번호,제목,내용		Board
+DeleteController		/delete?bno=1	bno			글번호
+
+
+BoardService	- write, list, read, update, delete

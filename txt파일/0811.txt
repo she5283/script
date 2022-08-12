@@ -1,0 +1,122 @@
+조인
+내부조인(교집합) : 동등조인(=), 비동등조인(between)
+외부조인
+
+sele 조인 : 자기자신과 조인
+대분류 {분류코드, 분류명}	중분류 {분류코드, 분류명, 대분류 코드}
+
+1. 조인을 해야한다 -> 관계가 맺어져야 한다
+2. 관계의 종류 - 1:1, 1:N, 다:다
+3. 1:다인 경우 1인쪾의 기본키를 N인쪽에서 참조
+
+소분류 {분류코드, 분류명}
+
+		대분류	중분류	소분류
+초록 사과		1	11	112
+
+
+중분류	소분류
+TV(31)	삼성(311)
+	LG(312)
+	기타(313)
+
+select * from 제품 where 소분류=311;
+select * from 제품 where 중분류=31;
+
+create table 제품 (
+	.....
+	분류number(3)		-- 311
+);
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+자바
+
+thymeleaf + jQuery
+
+thymeleaf + feact
+
+1. 스프링의 FrontController : DispatcharServlet
+2. 스프링의 3대 특징
+    - Inversion of control : 제어 역전 (컨테이너)
+	프로그램 제어 흐름을 프레임워크가 통제한다( ex)new 금지)
+	객체를 생성하는 방법
+	- @Component : 우리가 작성한 클래스
+	- @Bean : 남이 작성한 클래스
+		@Bean
+		public PasswordEncoder passwordEncoder() {
+			return new BCryptPasswordEncoder();
+		}
+	- @Mapper : 마이바티스가 빈을 생성해서 ApplicationContext에 등록
+    - Dependency Injection
+	프레임워크가 필요한 객체를 주입해준다
+	주입 기준은 클래스의 타입(by Type) - @Autowired
+    - AOP
+	횡단관심을 분리, 구현한 다음 조립해서 처리 -> 반복되는 코드는 한번만 만든다
+	- Filter : 서블릿기술. DispatcherServlet앞에서 실행(스프링기술일수없다)
+	- Interceptor : 스프링기술. 컨트롤러 앞 또는 뒤에서 주소 베이스로 실행
+	- AOP : 스프링이 도입한 기술. 주소 + 조건(예외, 리턴되면, 파라미터가 있으면)
+
+3. 스프링 시큐리티
+    - Filter 베이스 : 10개의 필터가 동작한다 - FilterChain
+      만약 로그인, 권한이 이상하게 움직이면 logback에서 debug로 바꾸고 관찰
+    - 인증 (Authentication) : 로그인이 대표적 -> SS(스프링 시큐리티)가 처리
+	로그인 페이지의 주소, 로그인을 처리할 주소, 로그인 성공 처리 클래스
+    - 인가 (Authorization) : 권한
+
+4. HttpSession
+    - MVC 로그인하면 세션을 이용 <-- 쿠키(사용자 웹브라우저를 통해 서버 정보 저장) 기반
+    - 쿠키는 웹브라우저가 있어야만 의미가 있다
+5. 스마트폰 앱
+    - 웹앱(webapp) : 웹 브라우저 베이스 + 껍데기씌움
+    - 네이티브앱(nativeapp)
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+-- 사용자 : 아이디, 비밀번호, 이름, 이메일, 생일(날짜 처리에 대한 암기사항)
+-- 권한 테이블
+--	ROLE_로 시작하는 문자열
+--	문자열이기 때문에 누적되지 않는다
+--	ex) "ROLE_USER", "ROLE_MANAGER", "ROLE_ADMIN"이 있다면 누적 X
+--	     관리자가 ROLE_USER, ROLE_MANAGER, ROLE_ADMIN의 권한을 다 가지고있어야 한다
+-- 그래서 사용자와 권한은 1:다 관계다
+
+create table member (
+	username varchar2(10 char) constraint member_pk_username primary key,
+	password varchar2(60 char),
+	irum varchar2(20 char),
+	email varchar2(50 char),
+	birthday date,
+	loginFailCnt number(1) default 0,
+	enabled number(1) default 1
+);
+
+-- 함수종속 : 기본키를 주면 다른 필드는 하나만 나온다
+
+-- 기본키, 외래키 등을 독립된 컬럼으로 지정 : 테이블 레벨
+-- 복합키 기본키는 테이블 레벨로만 지정 가능
+-- 기본키는 자동으로 인덱스 -> 복합기본키의 경우 순서대로 1차, 2차 인덱스
+--  order by username, rolename -> username을 앞에 적었기 때문에 먼저 정렬 후 중복되면 rolename으로 정렬
+create table role (
+	username varchar2(10 char),
+	rolename varchar2(20 char),
+	constraimt role_pk primary key(username, rolename)
+);
+
+
+1. Member 테이블에 아이디, 비밀번호. Role 테이블에 권한.
+2. 아이디, 비밀번호, 권한을 저장하고 있는 객체 : UserDetails 인터페이스
+3. DB에 접근해 UserDetails 객체를 생성하는 메소드 : loadByUsername
+4. loadByUsername을 정의하고 있는 인터페이스 : UserDetailsService
+
+5. 내가 만든 UserDetailsService구현체와 PasswordEncoder를 스프링 시큐리티에 넘긴다(주입한다)
+6. 실제 인증, 인가 서비스를 운영하는 클래스의 이름이 DaoAuthenticationProvider
+
+
+UserDetailsService의 내 구현체
+
+
+	public UserDetails loadByUsername()
+		아이디, 비밀번호, 권한을 읽어와서 리턴
+PasswordEncoder
+
+	SS가 제공하는 DaoAuthenticationProvider

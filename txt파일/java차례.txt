@@ -1,0 +1,11 @@
+https://svn.riouxsvn.com/icia_test
+
+
+com.icia.example.entity
+	Board
+com.icia.example.dto
+	WriteDto, UpdateDto, Page, ReadGto
+com.icia.example.service
+	BoardService
+com.icia.example.test
+	BoardServiceTest

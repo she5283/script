@@ -1,0 +1,35 @@
+### 설정 파일의 위치는 resources. mapper라고 하면 resources/mapper 폴더 ###
+
+클래스 내부에 클래스를 넣을 수 있다 -> 내부 클래스
+내부 클래스를 이용해서 DTO를 정리하자
+그래서 new BOardDto.ReadDto()
+
+1. 우선 BOardDto객체를 못만들게 하자
+2. 내부 클래스의 객체를 만드려면 외부 클래스의 객체가 존재해야 한다
+	내부 클래스를 static으로 만들면 외부 클래스의 객체가 필요없다
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+DAO : Data Access Object. 보통 db 작업을 담당하는 객체를 말한다
+MyBatis에서 DAO를 만드는 방법
+1. 인터페이스
+2. 인터페이스 + xml mapper 파일
+3. 클래스 + xml 설정 파일
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+xml은 사용자 정의 마크업 언어로 태그를 사용자가 정한다
+단 첫 줄은 반드시 <?xml ~~?>이다
+https://frozenpond.tistory.com/85 mapper 작성 방법
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">(xml문서를 제대로 작성했는지 검증하는 방법을 지정)
+
+mybatis sql파일(mapper)는 전체를 mapper 태그로 감싸야 한다
+mapper태그의 namespace 속성은 인터페이스 방식과 클래스 방식에서 의미가 다르다
+인터페이스 방식의 경우 namespace는 반드시 인터페이스의 풀 네임이다
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+select board_seq.nextval from dual는 매우 가벼움
+select max(bno)+1 from board는 매우 무거움 모든 리스트를 찾아봄
+
+마이바티스는 자바클래스에 대한 typealias를 가지고 있다
+Optional은 null이 발생할수도 있다고 하기위해 사용(실패할 수 있다)

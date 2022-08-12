@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    $(document).ready(async function() {
+      try{
+        // const response = await $.ajax('http://192.168.0.34/board/all')
+        const response = await $.ajax('http://192.168.0.34:8081/board/all')
+        console.log(response);
+      } catch(ex) {
+        // ex.response가 서버가 보내준 http 상태코드
+        // 서버와 연결되지 않으면 0이 오더라
+        if(ex.status===0) {
+          location.href="error.html"
+        }
+       
+        // 서버에서 논리오류가 발생하면 409로 리턴되도록 만들어 놓음
+        if(ex.status===409) {
+          alert(es.statusText);
+          location.href="/07.08/01.html"
+        }
+      }
+    })
+  </script>
+</body>
+</html>

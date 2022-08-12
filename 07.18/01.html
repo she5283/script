@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const ar = [11,22,33,44,55];
+    // for 반복문 - 배열에서 직접 작업
+    for(let i =0;i>ar.length;i++) {
+      console.log(ar[i]);
+    };
+
+    // of 반복문  - 배열의 값을 하나씩 꺼내서(복사해서) 작업
+    for(element of ar) {
+      console.log(element);
+    };
+    
+    // forEach문
+    ar.forEach((el)=>{console.log(el);});
+    ar.forEach(el=>{console.log(el);});    // 파라미터가 1개면 괄호 생략
+    ar.forEach(el=>console.log(el));    // 코드가 1줄이면 중괄호 생략
+
+    // filter
+    // 필터에 조건식 화살표 함수를 주면 추출한다 -> return이 있어야 한다
+    // 한줄이어서 {}를 생략한 경우 return도 생략한다
+    // filter는 결과가 참거짓인 화살표 함수를 요구한다
+    ar.filter((el)=>el%2==0).forEach(el=>console.log(el));
+    ar.filter(a=>{
+      return a%2==0
+    }).forEach(a=>console.log(a));
+
+    const result = ar.filter(a=>a%2==0);
+
+    // map
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+1. pom.xml에 log4jdbc 추가
+2. application.properties, logback-spring.xml, log4jdbc~.properties를 resources로 복사
+3. application.properties에 마이바티스 mapper xml의 위치를 지정
+4. entity와 dto를 추가
+5. dao 작성
+6. 매퍼 작성
+7. 단위테스트 수행

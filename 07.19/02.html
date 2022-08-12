@@ -1,0 +1,12 @@
+<script>
+  const ar = [77, 55, 66, 88, 100];
+  // 배열을 반복하면서 작업
+  ar.forEach(x => console.log(x));
+
+  // 배열에서 추출
+  ar.filter(i => i > 70).forEach(x => console.log(x));
+
+  // 배열에서 변환
+  // 70점이상인 경우 '77점으로 합격입니다'라고 변환(number->string)하자
+  ar.filter(a => a >= 70).map(a => a + "점으로 합격입니다").forEach(x => console.log(x));
+</script>

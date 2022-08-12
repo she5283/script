@@ -1,0 +1,13 @@
+1. mlogin02_1 프로젝트를 만드시오
+- 사용하지 않는 라이브러리 선택 금지
+	lombok, devtools, spring-web, validation, thymeleaf
+
+2. dto만들고 ControllerAdvice로 검증에 실패했을 때 오류페이지로 이동하게 하시오
+- LoginControllerAdivce
+- error.html
+- BoindException 처리
+
+3. 로그인에 성공 처리
+- 검증을 통과하면 아이디를 세션에 저장
+- 성공페이지(아까 /sample1)로 이동하면 ~님 환영합니다 메시지와 로그아웃 버튼 출력
+- 로그 아웃 버튼을 누르면 로그아웃

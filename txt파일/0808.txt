@@ -1,0 +1,72 @@
+오라클
+
+데이터베이스 메타데이터 : system catalog, data 사전, schema
+시스템 카탈로그는 속도 위주 세팅 -> 사람이 읽을 수 없는 형식으로 저장
+오라클이 시스템 카탈로그에 대한 뷰를 제공한다 : user_
+인덱스 : user_indexes 뷰에서 확인할 수 있다
+
+인덱스가 없으면 테이블 전체(full)를 찾는다
+만약 인덱스가 없는 컬럼으로 자주 검색하는 경우 인덱스를 만들어주자
+인덱스를 만들면 그 컬럼 검색은 빨라져도 테이블 자체가 무거워진다
+
+단일행 함수 : 오라클은 많은 함수를 제공한다. 이 함수들을 사용할까?
+lower, upper
+사용자가 존재하는 지 검색
+service : public boolean existsById(String empno) {  }
+dao는 boolean? int?
+
+rownum - 오라클이 select 결과행에 붙이는 행번호
+select rownum, emp.* from emp where rownum=3;
+우선 smith의 행을 꺼내와서 조건 체크: rownum=3 -> 조건 불만족 버린다
+다음 allen의 행을 꺼낸다. allen 행의 rownum은 1이다 -> 조건 불만족 버린다
+select rownum, emp.* from emp where rownum<=3;
+
+급여 1등을 출력
+테이블에서 5개를 꺼낸다음 급여순으로 정렬 : top-N 쿼리
+ from->where->select->order by : where전에 order by가 실행되어야 한다
+select * from emp where rownum<=5 order by sal desc;
+
+ 데이터를 정렬한 다음(첫번째 select) where 하자 (두번째 select) 괄호안에 있는 select문이 먼저 실행된다
+select * from (select * from emp order by sal desc) where rownum<=5;
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+sts
+
+facade 패턴 : 표준 <-- 구현체
+	      slf4j <-- logback
+ javax.validation(jsr-380) <-- hibernate(검증, JPA)
+
+@NotNull은 빈입력을 허용. 숫자에 사용하면 된다
+@NotEmplty는 글자에 사용하면 된다.
+
+http는 상태가 없다(stateless) -> 메모리가 없다...치매
+사용자 정보를 저장하는 서버측 기술 : HttpSession, 데이터베이스
+
+http는 상태가 없다 -> 사용자를 구별을 못한다 -> 사용자 정보를 저장 못한다
+사용자 정보를 저장하기 위한 기술 -> HttpSession
+ HttpSession을 사용하는 대표적인 예 : login, 장바구니
+그러면 http가 상태가 없는데 어떻게 사용자마다 세션 하나씩 관리할 수 있나?
+ Cookie를 사용한다
+Cookie가 뭔데?
+ 서버가 내 컴퓨터에 저장하는 텍스트 파일
+Cookie의 대표적인 사용예는?
+ 방문했던 링크 보라색
+
+http://localhost:8087/sample1로 접근
+	비로그인
+http://localhost:8087/login1으로 로그인하면
+http://localhost:8087/sample1로 이동
+	aaaa님 환영합니다
+
+컨트롤러 어드바이스는 컨트롤러의 일종(예외를 처리하는 컨트롤러)
+컨트롤러는 주소가 일치하면 동작
+컨트롤러 어드바이스는 예외가 일치하면 동작
+
+코딩할 때 클래스 이름을 적어야하는 경우 ~.class라고 적는다
+@Valid : 자바표준 빈 검증 어노테이션 -> 커맨드 객체일 경우만 검증 가능
+@Validated : 스프링 빈 검증 어노테이션
+
+사용자가 입력값을 검증. 어디서 할까? 커맨드 객체에서 수행
+검증에 실패한 경우 오류 메시지를 담는 BindingResult 객체가 만들어진다
+	스프링 검증 실패 : BindException
+	BindingReslut에 오류 메시지가 들었다면 BindException를 발생시켜라

@@ -1,0 +1,19 @@
+웹 표준 - html5, css, js -> 정적인 파일로 구성. 특정 시스템과 무관
+동적 웹 - 프로그램이 실행되어 웹을 만들어낸다 -> 특정 언어 기반 (표준 X)
+
+웹 서버(http 서버) : apache, ngingX, MS lnternet lnformation Server
+- http(80번 포트) 요청에 대해 응답
+- http는 원래 정적 -> html, css, image.... 등 정적인 파일을 서비스
+- 이해할 수 없는 요청(/board/new)인 경우 WAS에 넘긴다
+
+
+WAS(Web Application Server) : tomcat, netty, undertow....
+- 미들웨어(middleware)
+- tomcat은 WAS의 제한적인 웹 서버 기능을 포함하고 있다
+- 웹서버와 연동해서 자바프로그램을 실행해주는 서버
+- 서블릿을 실행(서블릿 container)해 그 결과(html, json)를 웹 서버에 전송
+
+
+
+c:/java/sts/prohect/zboard4		http://localhost:8081/zboard4
+c:/upload				http://localhost:8081/images

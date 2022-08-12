@@ -1,0 +1,12 @@
+Front Controller (패턴)
+- 모든 요청을 접수하는 Controller -> /, /*
+- 스프링 : DispatcherServlet
+
+스프링은 서블릿을 마개조한 백엔드 프레임워크
+하부에는 DispatcherServlet이 있고 모든 요청을 접수한다
+
+MVC에서 jsp, 타임리프는 결국 자바
+백단에서 실행되서 결과 html을 만들어 사용자에게 보낸다
+
+
+

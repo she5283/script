@@ -1,0 +1,15 @@
+forward : 사용자가 요청한 작업을 시작해서 처리 후 결과 페이지를 출력한다
+	일련의 연속된 작업 : 주소가 바뀌지 않는다
+	현재 사이트 외부로 이동(forward)이 불가능
+redirect : 다른 주소로 이동(새로운 작업)
+	외부 사이트로 이동(readirect)이 가능
+	redirect:/주소 이런식으로 사용
+
+REST 방식의 경우는 POST /student/add
+MVC 방식의 경우는 화면을 보여주고 입력을 처리하자
+new ModelAndView("redirect:/student/read") -> 출력시키면 이 주소로 이동하자
+redirect : 이동시켜줌
+
+타임리프는 속성으로 작업하기때문에 무조건 태그가 있어야한다
+
+spring.thymeleaf.cache=false 타임리프는 캐시하지마라
